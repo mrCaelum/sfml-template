@@ -71,18 +71,23 @@ void TextButton::updateAnimation()
             _text.setScale(sf::Vector2f{1.0f, 1.0f} / ((_animation_state * (_animation_intensity - 1.0f) / _animation_iteration) + 1.0f));
             break;
         case AnimationType::TOP_TO_BOTTOM_SLIDE:
-            _text.setPosition(sf::Vector2f{_position.x, _position.y * ((_animation_state * (_animation_intensity - 1.0f) / _animation_iteration) + 1.0f)});
+            _text.setPosition(sf::Vector2f{_position.x, _position.y * ((_animation_state * (((_animation_intensity - 1.0f) / 10 + 1.0f) - 1.0f) / _animation_iteration) + 1.0f)});
             break;
         case AnimationType::BOTTOM_TO_TOP_SLIDE:
-            _text.setPosition(sf::Vector2f{_position.x, _position.y / ((_animation_state * (_animation_intensity - 1.0f) / _animation_iteration) + 1.0f)});
+            _text.setPosition(sf::Vector2f{_position.x, _position.y / ((_animation_state * (((_animation_intensity - 1.0f) / 10 + 1.0f) - 1.0f) / _animation_iteration) + 1.0f)});
             break;
         case AnimationType::LEFT_TO_RIGHT_SLIDE:
-            _text.setPosition(sf::Vector2f{_position.x * ((_animation_state * (_animation_intensity - 1.0f) / _animation_iteration) + 1.0f), _position.y});
+            _text.setPosition(sf::Vector2f{_position.x * ((_animation_state * (((_animation_intensity - 1.0f) / 10 + 1.0f) - 1.0f) / _animation_iteration) + 1.0f), _position.y});
             break;
         case AnimationType::RIGHT_TO_LEFT_SLIDE:
-            _text.setPosition(sf::Vector2f{_position.x / ((_animation_state * (_animation_intensity - 1.0f) / _animation_iteration) + 1.0f), _position.y});
+            _text.setPosition(sf::Vector2f{_position.x / ((_animation_state * (((_animation_intensity - 1.0f) / 10 + 1.0f) - 1.0f) / _animation_iteration) + 1.0f), _position.y});
             break;
         }
+}
+
+sf::String const &TextButton::getString() const
+{
+    return _text.getString();
 }
 
 sf::Vector2f const &TextButton::getPosition() const

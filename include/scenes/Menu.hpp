@@ -5,13 +5,12 @@
     #include <SFML/Graphics/Sprite.hpp>
     #include <SFML/Graphics/Font.hpp>
     #include "Scene.hpp"
-    #include "TextButton.hpp"
+    #include "TextMenu.hpp"
 
     class Menu : public Scene
     {
     private:
-        TextButton _playBtn;
-        TextButton _exitBtn;
+        TextMenu _textMenu;
 
     public:
         Menu(sf::RenderWindow const &window, sf::Font const &font);
