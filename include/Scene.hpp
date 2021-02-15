@@ -9,6 +9,7 @@
     public:
         enum ID {
             MENU,
+            OPTIONS,
             GAME
         };
 

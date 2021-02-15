@@ -3,7 +3,7 @@
 
     #include <SFML/Window/Event.hpp>
     #include <SFML/Graphics/RenderWindow.hpp>
-    #include <SFML/Graphics/Text.hpp>
+    #include "TextAnimation.hpp"
 
     class TextButton : public sf::Drawable
     {
@@ -14,23 +14,23 @@
             CLICKED,
             RELEASED
         };
-        enum AnimationType {
-            ZOOM_IN,
-            ZOOM_OUT,
-            TOP_TO_BOTTOM_SLIDE,
-            BOTTOM_TO_TOP_SLIDE,
-            LEFT_TO_RIGHT_SLIDE,
-            RIGHT_TO_LEFT_SLIDE
+        enum Origin {
+            CENTERED,
+            LEFT,
+            TOP,
+            RIGHT,
+            BOTTOM,
+            TOP_LEFT,
+            TOP_RIGHT,
+            BOTTOM_LEFT,
+            BOTTOM_RIGHT
         };
 
     private:
         sf::Text _text;
         sf::Vector2f _position;
-        AnimationType _animation;
-        float _animation_duration;
-        float _animation_intensity;
-        unsigned int _animation_iteration;
-        unsigned int _animation_state;
+        TextAnimation _hovered;
+        TextAnimation _clicked;
         float _elapsed_time;
         State _state;
 
@@ -43,10 +43,9 @@
             sf::Color const &color = sf::Color::White,
             sf::Color const &outline_color = sf::Color::Black,
             float const outline_thickness = 0.0f,
-            AnimationType const animation = AnimationType::ZOOM_IN,
-            float const animation_duration = 0.1f,
-            float const animation_intensity = 1.2f,
-            unsigned int const animation_iteration = 100U
+            Origin const origin = Origin::CENTERED,
+            TextAnimation const &hovered = TextAnimation{},
+            TextAnimation const &clicked = TextAnimation{}
         );
         TextButton() = delete;
         ~TextButton() = default;
@@ -54,12 +53,13 @@
         void updateState(sf::RenderWindow const &window, sf::Event event);
         State getState() const;
         void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
-        void updateAnimation();
 
         sf::String const &getString() const;
 
         sf::Vector2f const &getPosition() const;
         void setPosition(sf::Vector2f const &position);
+
+        void setOrigin(Origin const origin);
 
         void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     };

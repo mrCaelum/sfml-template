@@ -13,10 +13,9 @@
         sf::Color _text_color;
         sf::Color _text_outline_color;
         float _outline_thickness;
-        TextButton::AnimationType _animation;
-        float _animation_duration;
-        float _animation_intensity;
-        unsigned int _animation_iteration;
+        TextButton::Origin _origin;
+        TextAnimation _hovered;
+        TextAnimation _clicked;
 
     public:
         TextMenu(
@@ -25,10 +24,9 @@
             sf::Color const &text_color = sf::Color::White,
             sf::Color const &text_outline_color = sf::Color::Black,
             float const outline_thickness = 0.0f,
-            TextButton::AnimationType const animation = TextButton::AnimationType::ZOOM_IN,
-            float const animation_duration = 0.1f,
-            float const animation_intensity = 1.2f,
-            unsigned int const animation_iteration = 100U
+            TextButton::Origin const origin = TextButton::Origin::CENTERED,
+            TextAnimation const &hovered = TextAnimation{},
+            TextAnimation const &clicked = TextAnimation{}
         );
         TextMenu() = delete;
         ~TextMenu() = default;
