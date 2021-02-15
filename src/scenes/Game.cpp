@@ -1,8 +1,6 @@
-#include <fstream>
-#include <iostream>
 #include "Game.hpp"
 
-Game::Game(sf::RenderWindow const &window) : Scene{}, _elapsedTime{0.0f}//, _player{window, {10.0f, 10.0f}}
+Game::Game(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{}, _elapsedTime{0.0f}//, _player{window, {10.0f, 10.0f}}
 {}
 
 void Game::event(sf::RenderWindow &window, Scene::ID &currentId)
@@ -12,6 +10,9 @@ void Game::event(sf::RenderWindow &window, Scene::ID &currentId)
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
+        if (event.type == sf::Event::KeyReleased)
+            if (event.key.code == sf::Keyboard::Escape)
+                currentId = Scene::ID::MENU;
     }
 }
 

@@ -2,20 +2,19 @@
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <vector>
 #include "Scene.hpp"
 #include "RessourcesHandler.hpp"
+#include "TextButton.hpp"
 
-class Game : public Scene
+class Options : public Scene
 {
 private:
-    float _elapsedTime;
-
+    TextButton _backBtn;
 public:
-    Game(sf::RenderWindow const &window, RessourcesHandler &ressources);
-    ~Game() = default;
+    Options(sf::RenderWindow const &window, RessourcesHandler &ressources);
+    ~Options() = default;
 
     void event(sf::RenderWindow &window, Scene::ID &currentId) final;
-    void update(sf::RenderWindow &window, const float elapsedTime) final;
+    void update(sf::RenderWindow &window, const float elapsed_time) final;
     void draw(sf::RenderWindow &window) final;
 };

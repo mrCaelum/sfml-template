@@ -7,12 +7,11 @@
 class SoundEffect
 {
 private:
-    sf::SoundBuffer _buffer;
     sf::Sound _sound;
     bool _played;
 
 public:
-    SoundEffect(sf::String const &filename);
+    SoundEffect(sf::SoundBuffer const &buffer);
     ~SoundEffect() = default;
 
     void play();

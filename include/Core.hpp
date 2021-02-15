@@ -6,6 +6,7 @@
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include "Scene.hpp"
+#include "RessourcesHandler.hpp"
 
 namespace sf {
     class VideoMode;
@@ -24,7 +25,7 @@ class Core {
     private:
         sf::RenderWindow _window;
         sf::Clock _clock;
-        sf::Font _font;
+        RessourcesHandler _ressources;
         std::vector<std::unique_ptr<Scene>> _scenes;
         Scene::ID _currentScene;
 };

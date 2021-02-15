@@ -1,10 +1,9 @@
 #include "SoundEffect.hpp"
 
-SoundEffect::SoundEffect(sf::String const &filename)
-: _buffer{}, _sound{}, _played{false}
+SoundEffect::SoundEffect(sf::SoundBuffer const &buffer)
+: _sound{}, _played{false}
 {
-    _buffer.loadFromFile(filename);
-    _sound.setBuffer(_buffer);
+    _sound.setBuffer(buffer);
 }
 
 void SoundEffect::play()
