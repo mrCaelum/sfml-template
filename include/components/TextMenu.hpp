@@ -1,42 +1,40 @@
-#ifndef TEXTMENU_HPP
-    #define TEXTMENU_HPP
+#pragma once
 
-    #include <vector>
-    #include "TextButton.hpp"
+#include <vector>
+#include "TextButton.hpp"
 
-    class TextMenu : public sf::Drawable
-    {
-    private:
-        std::vector<TextButton> _buttons;
-        sf::Font _font;
-        unsigned int _character_size;
-        sf::Color _text_color;
-        sf::Color _text_outline_color;
-        float _outline_thickness;
-        TextButton::Origin _origin;
-        TextAnimation _hovered;
-        TextAnimation _clicked;
+class TextMenu : public sf::Drawable
+{
+private:
+    std::vector<TextButton> _buttons;
+    sf::Font _font;
+    unsigned int _character_size;
+    sf::Color _text_color;
+    sf::Color _text_outline_color;
+    float _outline_thickness;
+    TextButton::Origin _origin;
+    TextAnimation _hovered;
+    TextAnimation _clicked;
 
-    public:
-        TextMenu(
-            sf::Font const &font,
-            unsigned int const character_size = 30U,
-            sf::Color const &text_color = sf::Color::White,
-            sf::Color const &text_outline_color = sf::Color::Black,
-            float const outline_thickness = 0.0f,
-            TextButton::Origin const origin = TextButton::Origin::CENTERED,
-            TextAnimation const &hovered = TextAnimation{},
-            TextAnimation const &clicked = TextAnimation{}
-        );
-        TextMenu() = delete;
-        ~TextMenu() = default;
+public:
+    TextMenu(
+        sf::Font const &font,
+        unsigned int const character_size = 30U,
+        sf::Color const &text_color = sf::Color::White,
+        sf::Color const &text_outline_color = sf::Color::Black,
+        float const outline_thickness = 0.0f,
+        TextButton::Origin const origin = TextButton::Origin::CENTERED,
+        TextAnimation const &hovered = TextAnimation{},
+        TextAnimation const &clicked = TextAnimation{}
+    );
+    TextMenu() = delete;
+    ~TextMenu() = default;
 
-        void updateStates(sf::RenderWindow const &window, sf::Event event);
-        void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+    void updateStates(sf::RenderWindow const &window, sf::Event event);
+    void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
 
-        void addButton(sf::String const &text, sf::Vector2f const &position);
-        TextButton *getButton(sf::String const &text);
+    void addButton(sf::String const &text, sf::Vector2f const &position);
+    TextButton *getButton(sf::String const &text);
 
-        void draw(sf::RenderTarget &target, sf::RenderStates states) const;
-    };
-#endif
+    void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+};
