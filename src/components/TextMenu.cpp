@@ -32,6 +32,16 @@ TextButton *TextMenu::getButton(sf::String const &text)
     return nullptr;
 }
 
+std::vector<TextButton::State> const &TextMenu::getStates() const
+{
+    std::vector<TextButton::State> states{};
+
+    for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+        states.push_back(it->getState());
+    }
+    return states;
+}
+
 void TextMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {

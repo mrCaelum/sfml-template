@@ -35,6 +35,7 @@ public:
 
     void addButton(sf::String const &text, sf::Vector2f const &position);
     TextButton *getButton(sf::String const &text);
+    std::vector<TextButton::State> const &getStates() const;
 
     void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

@@ -3,7 +3,7 @@
 import os
 import sys
 
-PROJECT_NAME = 'superBonobros2'
+PROJECT_NAME = 'platformer'
 
 def clear():
     return os.system('rm -rf ./build' if os.name == 'posix' else 'rd /s /q .\\build\\')
@@ -17,7 +17,7 @@ def make():
     if os.name == 'nt':
         if os.system('copy .\\lib\\SFML-2.5.1\\bin\\*.dll .\\build\\Release\\') != 0:
             return 1
-    return os.system('cp ./assets ./build/assets -r' if os.name == 'posix' else 'xcopy /Y .\\assets .\\build\\Release\\assets\\')
+    return os.system('cp ./assets ./build/assets -r' if os.name == 'posix' else 'xcopy /y /s .\\assets .\\build\\Release\\assets\\')
 
 def run():
     return os.system('./build/' + PROJECT_NAME if os.name == 'posix' else '.\\build\\Release\\' + PROJECT_NAME + '.exe')

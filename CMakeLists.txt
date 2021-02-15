@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(superBonobros2)
+project(platformer)
 
 IF (WIN32)
     set(SFML_DIR "lib/SFML-2.5.1/lib/cmake/SFML")

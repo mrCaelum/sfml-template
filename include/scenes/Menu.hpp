@@ -6,11 +6,14 @@
     #include <SFML/Graphics/Font.hpp>
     #include "Scene.hpp"
     #include "TextMenu.hpp"
+    #include "SoundEffect.hpp"
 
     class Menu : public Scene
     {
     private:
+        sf::Text _title;
         TextMenu _textMenu;
+        SoundEffect _selectSoundEffect;
 
     public:
         Menu(sf::RenderWindow const &window, sf::Font const &font);
