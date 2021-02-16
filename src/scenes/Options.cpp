@@ -1,7 +1,12 @@
 #include "Options.hpp"
 
-Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{}
-, _backBtn{
+Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{},
+_rangePicker{
+    10U,
+    {100.0f, 100.0f},
+    {500.0f, 20.0f}
+},
+_backBtn{
     "back",
     ressources.getFont("assets/fonts/Roboto.ttf"),
     {window.getSize().x / 20.0f, 19 * window.getSize().y / 20.0f},
@@ -33,10 +38,12 @@ void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
 
 void Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
+    _rangePicker.update(window);
     _backBtn.update(window, elapsed_time);
 }
 
 void Options::draw(sf::RenderWindow &window)
 {
+    window.draw(_rangePicker);
     window.draw(_backBtn);
 }

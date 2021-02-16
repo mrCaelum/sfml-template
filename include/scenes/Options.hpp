@@ -5,11 +5,14 @@
 #include "Scene.hpp"
 #include "RessourcesHandler.hpp"
 #include "TextButton.hpp"
+#include "RangePicker.hpp"
 
 class Options : public Scene
 {
 private:
+    RangePicker _rangePicker;
     TextButton _backBtn;
+
 public:
     Options(sf::RenderWindow const &window, RessourcesHandler &ressources);
     ~Options() = default;
