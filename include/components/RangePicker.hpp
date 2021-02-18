@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Color.hpp>

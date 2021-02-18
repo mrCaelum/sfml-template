@@ -2,7 +2,8 @@
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include "TextAnimation.hpp"
+#include <SFML/Graphics/Text.hpp>
+#include "Animation.hpp"
 
 class TextButton : public sf::Drawable
 {
@@ -28,8 +29,8 @@ public:
 private:
     sf::Text _text;
     sf::Vector2f _position;
-    TextAnimation _hovered;
-    TextAnimation _clicked;
+    Animation _hovered;
+    Animation _clicked;
     float _elapsed_time;
     State _state;
 
@@ -43,8 +44,8 @@ public:
         sf::Color const &outline_color = sf::Color::Black,
         float const outline_thickness = 0.0f,
         Origin const origin = Origin::CENTERED,
-        TextAnimation const &hovered = TextAnimation{},
-        TextAnimation const &clicked = TextAnimation{}
+        Animation const &hovered = Animation{},
+        Animation const &clicked = Animation{}
     );
     TextButton() = delete;
     ~TextButton() = default;

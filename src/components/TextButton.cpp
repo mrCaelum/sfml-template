@@ -1,7 +1,7 @@
 #include <SFML/Window/Mouse.hpp>
 #include "TextButton.hpp"
 
-TextButton::TextButton(sf::String const &text, sf::Font const &font, sf::Vector2f const &position, unsigned int const size, sf::Color const &color, sf::Color const &outline_color, float const outline_thickness, Origin const origin, TextAnimation const &hovered, TextAnimation const &clicked)
+TextButton::TextButton(sf::String const &text, sf::Font const &font, sf::Vector2f const &position, unsigned int const size, sf::Color const &color, sf::Color const &outline_color, float const outline_thickness, Origin const origin, Animation const &hovered, Animation const &clicked)
 : _text{}, _position{position}, _hovered{hovered}, _clicked{clicked}, _elapsed_time{0.0f}, _state{State::IDLE}
 {
     _text.setFont(font);

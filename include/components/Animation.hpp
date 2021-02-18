@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Transformable.hpp>
+
 struct Animation
 {
     enum Type {
@@ -19,9 +21,9 @@ struct Animation
     unsigned int state;
     float time;
 
-    Animation(Type const type = Type::NONE, float const duration = 0.1f, float const intensity = 1.2f, unsigned int const iteration = 100U)
-        : type{type}, duration{duration}, intensity{intensity}, iteration{iteration}, state{0U}, time{0.0f} {}
-    Animation(Animation const &other)
-        : type{other.type}, duration{other.duration}, intensity{other.intensity}, iteration{other.iteration}, state{0U}, time{0.0f} {}
+    Animation(Type const type = Type::NONE, float const duration = 0.1f, float const intensity = 1.2f, unsigned int const iteration = 100U);
+    Animation(Animation const &other);
     ~Animation() = default;
+
+    void update(sf::Transformable &transform, float const elapsed_time, bool anim = false, sf::Vector2f const &position = {0.0f, 0.0f});
 };

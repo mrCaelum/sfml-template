@@ -13,8 +13,8 @@ private:
     sf::Color _text_outline_color;
     float _outline_thickness;
     TextButton::Origin _origin;
-    TextAnimation _hovered;
-    TextAnimation _clicked;
+    Animation _hovered;
+    Animation _clicked;
 
 public:
     TextMenu(
@@ -24,8 +24,8 @@ public:
         sf::Color const &text_outline_color = sf::Color::Black,
         float const outline_thickness = 0.0f,
         TextButton::Origin const origin = TextButton::Origin::CENTERED,
-        TextAnimation const &hovered = TextAnimation{},
-        TextAnimation const &clicked = TextAnimation{}
+        Animation const &hovered = Animation{},
+        Animation const &clicked = Animation{}
     );
     TextMenu() = delete;
     ~TextMenu() = default;

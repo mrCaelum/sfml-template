@@ -1,6 +1,6 @@
 #include "TextMenu.hpp"
 
-TextMenu::TextMenu(sf::Font const &font, unsigned int const character_size, sf::Color const &text_color, sf::Color const &text_outline_color, float const outline_thickness, TextButton::Origin const origin, TextAnimation const &hovered, TextAnimation const &clicked)
+TextMenu::TextMenu(sf::Font const &font, unsigned int const character_size, sf::Color const &text_color, sf::Color const &text_outline_color, float const outline_thickness, TextButton::Origin const origin, Animation const &hovered, Animation const &clicked)
 : _buttons{}, _font{font}, _character_size{character_size}, _text_color{text_color}, _text_outline_color{text_outline_color}, _outline_thickness{outline_thickness}, _origin{origin}, _hovered{hovered}, _clicked{clicked}
 {}
 

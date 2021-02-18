@@ -9,8 +9,8 @@ Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
     sf::Color::Black,
     0.5f,
     TextButton::Origin::LEFT,
-    TextAnimation{Animation::Type::LEFT_TO_RIGHT_SLIDE},
-    TextAnimation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
+    Animation{Animation::Type::LEFT_TO_RIGHT_SLIDE},
+    Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
 } {
     _title.setPosition({window.getSize().x / 2.0f, window.getSize().y / 5.0f});
     _title.setFillColor(sf::Color::White);

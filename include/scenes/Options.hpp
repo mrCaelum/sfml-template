@@ -6,11 +6,13 @@
 #include "RessourcesHandler.hpp"
 #include "TextButton.hpp"
 #include "RangePicker.hpp"
+#include "Switch.hpp"
 
 class Options : public Scene
 {
 private:
     RangePicker _rangePicker;
+    Switch _switch;
     TextButton _backBtn;
 
 public:

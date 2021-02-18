@@ -6,6 +6,10 @@ _rangePicker{
     {100.0f, 100.0f},
     {500.0f, 20.0f}
 },
+_switch{
+    {100.0f, 200.0f},
+    {20.0f}
+},
 _backBtn{
     "back",
     ressources.getFont("assets/fonts/Roboto.ttf"),
@@ -15,8 +19,8 @@ _backBtn{
     sf::Color::Black,
     0.1f,
     TextButton::Origin::RIGHT,
-    TextAnimation{Animation::Type::RIGHT_TO_LEFT_SLIDE},
-    TextAnimation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
+    Animation{Animation::Type::RIGHT_TO_LEFT_SLIDE},
+    Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
 }
 {}
 
@@ -39,11 +43,13 @@ void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
 void Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
     _rangePicker.update(window);
+    _switch.update(window, elapsed_time);
     _backBtn.update(window, elapsed_time);
 }
 
 void Options::draw(sf::RenderWindow &window)
 {
     window.draw(_rangePicker);
+    window.draw(_switch);
     window.draw(_backBtn);
 }
