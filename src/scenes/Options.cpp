@@ -8,7 +8,7 @@ _rangePicker{
 },
 _switch{
     {100.0f, 200.0f},
-    {20.0f}
+    {25.0f}
 },
 _backBtn{
     "back",
