@@ -8,12 +8,18 @@
 class Switch : public sf::Drawable
 {
 private:
+    enum MouseState {
+        IDLE,
+        CLICKED,
+        CLICKED_ON
+    };
+
     bool _checked;
     sf::Vector2f _position;
     float _size;
     float _border_thickness;
     Animation _animation;
-    bool _mouse_clicked;
+    unsigned char _mouse_state;
 
     sf::RectangleShape _center_border;
     sf::CircleShape _left_background;
@@ -34,6 +40,7 @@ public:
 
     bool checked() const;
 
+    bool picker_contains(sf::Vector2f const &point) const;
     bool contains(sf::Vector2f const &point) const;
 
     void update(sf::RenderWindow const &window, const float elapsed_time = 0.0f);

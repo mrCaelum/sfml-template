@@ -19,7 +19,7 @@ _backBtn{
     sf::Color::Black,
     0.1f,
     TextButton::Origin::RIGHT,
-    Animation{Animation::Type::RIGHT_TO_LEFT_SLIDE},
+    Animation{Animation::Type::RIGHT_TO_LEFT_SLIDE, 0.1f, 2.0f},
     Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
 }
 {}

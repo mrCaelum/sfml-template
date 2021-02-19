@@ -1,5 +1,7 @@
 #include "Animation.hpp"
 
+#define MAP(x, in_min, in_max, out_min, out_max) (((float)x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min)
+
 Animation::Animation(Type const type, float const duration, float const intensity, unsigned int const iteration)
 : type{type}, duration{duration}, intensity{intensity}, iteration{iteration}, state{0U}, time{0.0f} {}
 
@@ -21,22 +23,22 @@ void Animation::update(sf::Transformable &transform, float const elapsed_time, b
         }
         switch (this->type) {
         case Animation::Type::ZOOM_IN:
-            transform.setScale(sf::Vector2f{1.0f, 1.0f} * ((this->state * (this->intensity - 1.0f) / this->iteration) + 1.0f));
+            transform.setScale(sf::Vector2f{1.0f, 1.0f} * MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
             break;
         case Animation::Type::ZOOM_OUT:
-            transform.setScale(sf::Vector2f{1.0f, 1.0f} / ((this->state * (this->intensity - 1.0f) / this->iteration) + 1.0f));
+            transform.setScale(sf::Vector2f{1.0f, 1.0f} / MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
             break;
         case Animation::Type::TOP_TO_BOTTOM_SLIDE:
-            transform.setPosition(sf::Vector2f{position.x, position.y * ((this->state * (((this->intensity - 1.0f) / 10 + 1.0f) - 1.0f) / this->iteration) + 1.0f)});
+            transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y + this->intensity)});
             break;
         case Animation::Type::BOTTOM_TO_TOP_SLIDE:
-            transform.setPosition(sf::Vector2f{position.x, position.y / ((this->state * (((this->intensity - 1.0f) / 10 + 1.0f) - 1.0f) / this->iteration) + 1.0f)});
+            transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y - this->intensity)});
             break;
         case Animation::Type::LEFT_TO_RIGHT_SLIDE:
-            transform.setPosition(sf::Vector2f{position.x * ((this->state * (((this->intensity - 1.0f) / 10 + 1.0f) - 1.0f) / this->iteration) + 1.0f), position.y});
+            transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x + this->intensity), position.y});
             break;
         case Animation::Type::RIGHT_TO_LEFT_SLIDE:
-            transform.setPosition(sf::Vector2f{position.x / ((this->state * (((this->intensity - 1.0f) / 10 + 1.0f) - 1.0f) / this->iteration) + 1.0f), position.y});
+            transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x - this->intensity), position.y});
             break;
         }
     }
