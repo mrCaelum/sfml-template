@@ -1,7 +1,7 @@
 #include "Menu.hpp"
 
 Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
-: Scene{}, _title{"Platformer", ressources.getFont("assets/fonts/Roboto.ttf"), 50U}, _selectSoundEffect{ressources.getSound("assets/audio/select.wav")}, _background{}
+: Scene{}, _title{"Platformer", ressources.getFont("assets/fonts/Roboto.ttf"), 50U}
 , _textMenu{
     ressources.getFont("assets/fonts/Roboto.ttf"),
     30U,
@@ -11,7 +11,8 @@ Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
     TextButton::Origin::LEFT,
     Animation{Animation::Type::LEFT_TO_RIGHT_SLIDE, 0.1f, 2.0f},
     Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
-} {
+}, _selectSoundEffect{ressources.getSound("assets/audio/select.wav")}, _background{}
+{
     _title.setPosition({window.getSize().x / 2.0f, window.getSize().y / 5.0f});
     _title.setFillColor(sf::Color::White);
     _title.setOutlineColor(sf::Color::Black);

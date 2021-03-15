@@ -7,12 +7,14 @@
 #include "TextButton.hpp"
 #include "RangePicker.hpp"
 #include "Switch.hpp"
+#include "TextDropdown.hpp"
 
 class Options : public Scene
 {
 private:
     RangePicker _rangePicker;
     Switch _switch;
+    TextDropdown _dropdown;
     TextButton _backBtn;
 
 public:

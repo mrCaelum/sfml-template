@@ -37,6 +37,7 @@ process = {
     'all': full,
     'full': full,
     'clear': clear,
+    'clean': clear,
     'cmake': cmake,
     'make': make,
     'run': run

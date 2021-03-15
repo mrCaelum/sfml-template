@@ -32,7 +32,7 @@ TextButton *TextMenu::getButton(sf::String const &text)
     return nullptr;
 }
 
-std::vector<TextButton::State> const &TextMenu::getStates() const
+std::vector<TextButton::State> TextMenu::getStates() const
 {
     std::vector<TextButton::State> states{};
 

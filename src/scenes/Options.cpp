@@ -10,6 +10,11 @@ _switch{
     {100.0f, 200.0f},
     {25.0f}
 },
+_dropdown{
+    ressources.getFont("assets/fonts/Roboto.ttf"),
+    "Select",
+    {100.0f, 300.0f}
+},
 _backBtn{
     "back",
     ressources.getFont("assets/fonts/Roboto.ttf"),
@@ -44,6 +49,7 @@ void Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
     _rangePicker.update(window);
     _switch.update(window, elapsed_time);
+    _dropdown.update(window, elapsed_time);
     _backBtn.update(window, elapsed_time);
 }
 
@@ -51,5 +57,6 @@ void Options::draw(sf::RenderWindow &window)
 {
     window.draw(_rangePicker);
     window.draw(_switch);
+    window.draw(_dropdown);
     window.draw(_backBtn);
 }

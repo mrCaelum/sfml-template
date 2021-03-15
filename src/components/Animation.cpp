@@ -40,6 +40,8 @@ void Animation::update(sf::Transformable &transform, float const elapsed_time, b
         case Animation::Type::RIGHT_TO_LEFT_SLIDE:
             transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x - this->intensity), position.y});
             break;
+        default:
+            break;
         }
     }
 }
