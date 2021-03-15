@@ -3,7 +3,7 @@
 import os
 import sys
 
-PROJECT_NAME = 'platformer'
+PROJECT_NAME = 'sfml-template'
 
 def clear():
     return os.system('rm -rf ./build' if os.name == 'posix' else 'rd /s /q .\\build\\')
