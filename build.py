@@ -5,6 +5,12 @@ import sys
 
 PROJECT_NAME = 'sfml-template'
 
+def download_sfml():
+    if not os.path.isdir('.\\lib'):
+        os.system('md \"lib\"')
+    os.system('curl https://www.sfml-dev.org/files/SFML-2.5.1-windows-vc15-64-bit.zip --output .\\lib\\SFML-2.5.1.zip')
+    os.system('tar -xf .\\lib\\SFML-2.5.1.zip -C .\\lib\\')
+
 def clear():
     return os.system('rm -rf ./build' if os.name == 'posix' else 'rd /s /q .\\build\\')
 
@@ -23,6 +29,8 @@ def run():
     return os.system('./build/' + PROJECT_NAME if os.name == 'posix' else '.\\build\\Release\\' + PROJECT_NAME + '.exe')
 
 def full():
+    if os.name == 'nt' and not os.path.isdir('.\\lib\\SFML-2.5.1'):
+        download_sfml()
     if cmake() != 0:
         return 1
     return make()

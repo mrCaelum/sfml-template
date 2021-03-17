@@ -33,3 +33,6 @@
 *.app
 superBonobros2
 build
+
+# Libraries
+lib
