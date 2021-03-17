@@ -14,7 +14,7 @@ class Options : public Scene
 private:
     RangePicker _rangePicker;
     Switch _switch;
-    TextDropdown _dropdown;
+    TextDropdown _resolutions_dropdown;
     TextButton _backBtn;
 
 public:

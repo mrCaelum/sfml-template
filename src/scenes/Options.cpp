@@ -10,10 +10,12 @@ _switch{
     {100.0f, 200.0f},
     {25.0f}
 },
-_dropdown{
+_resolutions_dropdown{
     ressources.getFont("assets/fonts/Roboto.ttf"),
     "Select",
-    {100.0f, 300.0f}
+    {100.0f, 300.0f},
+    {250.0f, 40.0f},
+    {250.0f, 40.0f * 9.0f}
 },
 _backBtn{
     "back",
@@ -27,7 +29,38 @@ _backBtn{
     Animation{Animation::Type::RIGHT_TO_LEFT_SLIDE, 0.1f, 2.0f},
     Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
 }
-{}
+{
+    // 4:3
+    // _resolutions_dropdown.addElement("640x480");
+    // _resolutions_dropdown.addElement("800x600");
+    // _resolutions_dropdown.addElement("960x720");
+    // _resolutions_dropdown.addElement("1024x768");
+    // _resolutions_dropdown.addElement("1280x960");
+    // _resolutions_dropdown.addElement("1400x1050");
+    // _resolutions_dropdown.addElement("1440x1080");
+    // _resolutions_dropdown.addElement("1600x1200");
+    // _resolutions_dropdown.addElement("1856x1392");
+    // _resolutions_dropdown.addElement("1920x1440");
+    // _resolutions_dropdown.addElement("2048x1536");
+
+    // 16:10
+    // _resolutions_dropdown.addElement("1280x800");
+    // _resolutions_dropdown.addElement("1440x900");
+    // _resolutions_dropdown.addElement("1680x1050");
+    // _resolutions_dropdown.addElement("1920x1200");
+    // _resolutions_dropdown.addElement("2560x1600");
+
+    // 16:9
+    _resolutions_dropdown.addElement("1024x576");
+    _resolutions_dropdown.addElement("1152x648");
+    _resolutions_dropdown.addElement("1280x720");
+    _resolutions_dropdown.addElement("1366x768");
+    _resolutions_dropdown.addElement("1600x900");
+    _resolutions_dropdown.addElement("1920x1080");
+    _resolutions_dropdown.addElement("2560x1440");
+    _resolutions_dropdown.addElement("3840x2160");
+    _resolutions_dropdown.addElement("7680x4320");
+}
 
 void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
 {
@@ -49,7 +82,7 @@ void Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
     _rangePicker.update(window);
     _switch.update(window, elapsed_time);
-    _dropdown.update(window, elapsed_time);
+    _resolutions_dropdown.update(window, elapsed_time);
     _backBtn.update(window, elapsed_time);
 }
 
@@ -57,6 +90,6 @@ void Options::draw(sf::RenderWindow &window)
 {
     window.draw(_rangePicker);
     window.draw(_switch);
-    window.draw(_dropdown);
+    window.draw(_resolutions_dropdown);
     window.draw(_backBtn);
 }

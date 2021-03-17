@@ -8,7 +8,7 @@ Animation::Animation(Type const type, float const duration, float const intensit
 Animation::Animation(Animation const &other)
 : type{other.type}, duration{other.duration}, intensity{other.intensity}, iteration{other.iteration}, state{0U}, time{0.0f} {}
 
-void Animation::update(sf::Transformable &transform, float const elapsed_time, bool anim, sf::Vector2f const &position)
+void Animation::update(sf::Transformable &transform, float const elapsed_time, bool anim, sf::Vector2f const &position, float rotation)
 {
     this->time += elapsed_time;
     while (this->time >= (this->duration / static_cast<float>(this->iteration))) {
@@ -39,6 +39,12 @@ void Animation::update(sf::Transformable &transform, float const elapsed_time, b
             break;
         case Animation::Type::RIGHT_TO_LEFT_SLIDE:
             transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x - this->intensity), position.y});
+            break;
+        case Animation::Type::POSITIVE_ROTATION:
+            transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation - this->intensity));
+            break;
+        case Animation::Type::NEGATIVE_ROTATION:
+            transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation + this->intensity));
             break;
         default:
             break;

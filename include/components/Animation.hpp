@@ -11,7 +11,9 @@ struct Animation
         TOP_TO_BOTTOM_SLIDE,
         BOTTOM_TO_TOP_SLIDE,
         LEFT_TO_RIGHT_SLIDE,
-        RIGHT_TO_LEFT_SLIDE
+        RIGHT_TO_LEFT_SLIDE,
+        POSITIVE_ROTATION,
+        NEGATIVE_ROTATION
     };
 
     Type const type;
@@ -25,5 +27,5 @@ struct Animation
     Animation(Animation const &other);
     ~Animation() = default;
 
-    void update(sf::Transformable &transform, float const elapsed_time, bool anim = false, sf::Vector2f const &position = {0.0f, 0.0f});
+    void update(sf::Transformable &transform, float const elapsed_time, bool anim = false, sf::Vector2f const &position = {0.0f, 0.0f}, float rotation = 0.0f);
 };
