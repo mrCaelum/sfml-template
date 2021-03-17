@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 if (UNIX)
     set(CMAKE_CPP_COMPILER "/usr/bin/g++")
-    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unused-parameter -Wno-deprecated-copy -g -lGL -lXxf86vm -lXext -lX11")
+    set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unused-parameter -Wno-deprecated-copy -lGL -lXxf86vm -lXext -lX11")
     target_link_libraries(${PROJECT_NAME} sfml-audio sfml-network sfml-graphics sfml-window sfml-system)
 endif (UNIX)
 
