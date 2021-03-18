@@ -5,6 +5,7 @@
 #include "Scene.hpp"
 #include "RessourcesHandler.hpp"
 #include "TextButton.hpp"
+#include "Button.hpp"
 #include "RangePicker.hpp"
 #include "Switch.hpp"
 #include "TextDropdown.hpp"
@@ -15,7 +16,8 @@ private:
     RangePicker _rangePicker;
     Switch _switch;
     TextDropdown _resolutions_dropdown;
-    TextButton _backBtn;
+    Button _apply_button;
+    TextButton _back_button;
 
 public:
     Options(sf::RenderWindow const &window, RessourcesHandler &ressources);

@@ -27,14 +27,15 @@ private:
 
 public:
     Button(
-        sf::String const &text,
         sf::Font const &font,
+        sf::String const &text,
         sf::Vector2f const &position = {0.0f, 0.0f},
-        sf::Vector2f const &size = {200.0f, 50.0f},
-        unsigned int const character_size = 30U,
-        sf::Color const &color = sf::Color::White,
-        sf::Color const &outline_color = sf::Color::Black,
-        float const outline_thickness = 0.0f,
+        sf::Vector2f const &size = {200.0f, 40.0f},
+        unsigned int const character_size = 24U,
+        sf::Color const &text_color = sf::Color::White,
+        sf::Color const &background_color = sf::Color{80, 80, 80},
+        sf::Color const &border_color = sf::Color{52, 152, 219},
+        float const border_thickness = 1.0f,
         Animation const &hovered = Animation{},
         Animation const &clicked = Animation{}
     );

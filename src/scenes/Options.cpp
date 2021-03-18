@@ -17,7 +17,12 @@ _resolutions_dropdown{
     {250.0f, 40.0f},
     {250.0f, 40.0f * 9.0f}
 },
-_backBtn{
+_apply_button{
+    ressources.getFont("assets/fonts/Roboto.ttf"),
+    "Apply",
+    {100.0f, 400.0f}
+},
+_back_button{
     "back",
     ressources.getFont("assets/fonts/Roboto.ttf"),
     {window.getSize().x / 20.0f, 19 * window.getSize().y / 20.0f},
@@ -72,8 +77,8 @@ void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
         if (event.type == sf::Event::KeyReleased)
             if (event.key.code == sf::Keyboard::Escape)
                 currentId = Scene::ID::MENU;
-        _backBtn.updateState(window, event);
-        if (_backBtn.getState() == TextButton::State::RELEASED)
+        _back_button.updateState(window, event);
+        if (_back_button.getState() == TextButton::State::RELEASED)
             currentId = Scene::ID::MENU;
     }
 }
@@ -83,7 +88,8 @@ void Options::update(sf::RenderWindow &window, const float elapsed_time)
     _rangePicker.update(window);
     _switch.update(window, elapsed_time);
     _resolutions_dropdown.update(window, elapsed_time);
-    _backBtn.update(window, elapsed_time);
+    _apply_button.update(window, elapsed_time);
+    _back_button.update(window, elapsed_time);
 }
 
 void Options::draw(sf::RenderWindow &window)
@@ -91,5 +97,6 @@ void Options::draw(sf::RenderWindow &window)
     window.draw(_rangePicker);
     window.draw(_switch);
     window.draw(_resolutions_dropdown);
-    window.draw(_backBtn);
+    window.draw(_apply_button);
+    window.draw(_back_button);
 }
