@@ -17,23 +17,34 @@ Button::Button(sf::Font const &font, sf::String const &text, sf::Vector2f const 
     _text.setFillColor(text_color);
 }
 
-void Button::updateState(sf::RenderWindow const &window, sf::Event event)
+bool Button::hovered() const
 {
-    if (_box.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window))))
-        _state = (event.type == sf::Event::MouseButtonReleased) ? State::RELEASED
-            : (event.type == sf::Event::MouseButtonPressed) ? State::CLICKED
-            : State::HOVERED;
-    else
-        _state = State::IDLE;
+    return _state == State::HOVERED;
 }
 
-Button::State Button::getState() const
+bool Button::clicked() const
 {
-    return _state;
+    return _state == State::CLICKED;
+}
+
+bool Button::released() const
+{
+    return _state == State::RELEASED;
 }
 
 void Button::update(sf::RenderWindow const &window, float const elapsed_time)
 {
+    if (_box.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)))) {
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
+            _state = State::CLICKED;
+        } else if (_state == State::CLICKED) {
+            _state = State::RELEASED;
+        } else {
+            _state = State::HOVERED;
+        }
+    } else {
+        _state = State::IDLE;
+    }
     _hovered.update(_box, elapsed_time, _state == State::HOVERED, _position);
     _hovered.update(_text, 0.0f, _state == State::HOVERED, _position);
     _clicked.update(_box, elapsed_time, _state == State::CLICKED || _state == State::RELEASED, _position);

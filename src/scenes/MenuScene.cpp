@@ -1,6 +1,6 @@
-#include "Menu.hpp"
+#include "MenuScene.hpp"
 
-Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
+Scenes::Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
 : Scene{}, _title{"Platformer", ressources.getFont("assets/fonts/Roboto.ttf"), 50U}
 , _textMenu{
     ressources.getFont("assets/fonts/Roboto.ttf"),
@@ -27,7 +27,7 @@ Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
     _background.setTexture(ressources.getTexture("assets/background.jpg"));
 }
 
-void Menu::event(sf::RenderWindow &window, Scene::ID &currentId)
+void Scenes::Menu::event(sf::RenderWindow &window, Scene::ID &currentId)
 {
     sf::Event event;
 
@@ -53,12 +53,12 @@ void Menu::event(sf::RenderWindow &window, Scene::ID &currentId)
     }
 }
 
-void Menu::update(sf::RenderWindow &window, const float elapsedTime)
+void Scenes::Menu::update(sf::RenderWindow &window, const float elapsedTime)
 {
     _textMenu.update(window, elapsedTime);
 }
 
-void Menu::draw(sf::RenderWindow &window)
+void Scenes::Menu::draw(sf::RenderWindow &window)
 {
     window.draw(_background);
     window.draw(_title);

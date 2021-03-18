@@ -1,12 +1,13 @@
-#include "Options.hpp"
+#include <iostream>
+#include "OptionsScene.hpp"
 
-Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{},
+Scenes::Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{},
 _rangePicker{
     10U,
     {100.0f, 100.0f},
     {500.0f, 20.0f}
 },
-_switch{
+_fullscreen_switch{
     {100.0f, 200.0f},
     {25.0f}
 },
@@ -67,7 +68,7 @@ _back_button{
     _resolutions_dropdown.addElement("7680x4320");
 }
 
-void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
+void Scenes::Options::event(sf::RenderWindow &window, Scene::ID &currentId)
 {
     sf::Event event;
 
@@ -83,20 +84,24 @@ void Options::event(sf::RenderWindow &window, Scene::ID &currentId)
     }
 }
 
-void Options::update(sf::RenderWindow &window, const float elapsed_time)
+void Scenes::Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
     _rangePicker.update(window);
-    _switch.update(window, elapsed_time);
+    _fullscreen_switch.update(window, elapsed_time);
     _resolutions_dropdown.update(window, elapsed_time);
     _apply_button.update(window, elapsed_time);
     _back_button.update(window, elapsed_time);
+    if (_apply_button.released()) {
+        sf::ContextSettings settings(0, 0, 8);
+        window.create(sf::VideoMode{1920U, 1080U}, "sfml-template", _fullscreen_switch.checked() ? sf::Style::Fullscreen : sf::Style::Close, settings);
+    }
 }
 
-void Options::draw(sf::RenderWindow &window)
+void Scenes::Options::draw(sf::RenderWindow &window)
 {
     window.draw(_rangePicker);
-    window.draw(_switch);
-    window.draw(_resolutions_dropdown);
+    window.draw(_fullscreen_switch);
     window.draw(_apply_button);
     window.draw(_back_button);
+    window.draw(_resolutions_dropdown);
 }

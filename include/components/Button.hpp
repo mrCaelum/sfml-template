@@ -42,9 +42,10 @@ public:
     Button() = delete;
     ~Button() = default;
 
-    void updateState(sf::RenderWindow const &window, sf::Event event);
-    State getState() const;
-    void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+    bool hovered() const;
+    bool clicked() const;
+    bool released() const;
 
+    void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
     void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

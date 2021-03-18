@@ -1,4 +1,5 @@
 #include "Core.hpp"
+#include "Settings.hpp"
 
 int main(void)
 {
