@@ -7,10 +7,10 @@
 #include "OptionsScene.hpp"
 #include "GameScene.hpp"
 
-Core::Core(sf::VideoMode const &video, sf::String const &title, unsigned int framerate, unsigned int style, sf::ContextSettings const &settings) noexcept
-: _window{video, title, style, settings}, _clock{}, _ressources{}, _currentScene{Scene::MENU}
+Core::Core(Settings const &settings) noexcept
+: _window{settings.videomode, "sfml-template", settings.getStyle(), settings.getContextSettings()}, _clock{}, _ressources{}, _currentScene{Scene::MENU}
 {
-    _window.setFramerateLimit(framerate);
+    _window.setFramerateLimit(settings.framerate_limit);
 
     _ressources.setFont("assets/fonts/Roboto.ttf");
     _ressources.setSound("assets/audio/select.wav");

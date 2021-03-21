@@ -79,6 +79,7 @@ public:
 
     bool changed();
     sf::String getValue() const;
+    void setValue(sf::String const &text);
 
     void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
     void draw(sf::RenderTarget &target, sf::RenderStates states) const;

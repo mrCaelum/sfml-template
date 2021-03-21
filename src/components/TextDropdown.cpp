@@ -90,6 +90,11 @@ sf::String TextDropdown::getValue() const
     return _selectedText.getString();
 }
 
+void TextDropdown::setValue(sf::String const &text)
+{
+    _selectedText.setString(text);
+}
+
 void TextDropdown::update(sf::RenderWindow const &window, float const elapsed_time)
 {
     sf::Vector2f mouse_position = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));

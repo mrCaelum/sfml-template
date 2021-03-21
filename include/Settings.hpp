@@ -2,26 +2,36 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 
+#define SETTINGS_FILE "default.settings"
+
 class Settings
 {
 public:
     sf::VideoMode videomode;
-    sf::String title;
     unsigned int framerate_limit;
-    unsigned int style;
-    sf::ContextSettings settings;
+    bool fullscreen;
+    unsigned int antialiasing_level;
 
     Settings(
         sf::VideoMode const &videomode = sf::VideoMode{1920U, 1080U},
-        sf::String const &title = "undefined",
         unsigned int framerate_limit = 0U,
-        unsigned int style = sf::Style::Default,
-        sf::ContextSettings const &settings = sf::ContextSettings()
+        bool fullscreen = false,
+        unsigned int antialiasing_level = 8U
     );
     ~Settings() = default;
 
     void loadFromFile(std::string const &filename);
-    void saveToFile(std::string const &filename);
+    void saveToFile(std::string const &filename) const;
 
-    void update(sf::RenderWindow &window) const;
+    std::string getResolution() const;
+    unsigned int getStyle() const;
+    sf::ContextSettings getContextSettings() const;
+
+    void apply(Settings const &settings, sf::RenderWindow &window);
+
+    static sf::VideoMode strToResolution(std::string const &str);
+
+    Settings &operator=(Settings const &other);
 };
+
+extern Settings GLOBAL_SETTINGS;

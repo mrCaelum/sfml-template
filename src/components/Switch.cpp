@@ -39,6 +39,11 @@ bool Switch::checked() const
     return _checked;
 }
 
+void Switch::check(bool value)
+{
+    _checked = value;
+}
+
 bool Switch::picker_contains(sf::Vector2f const &point) const
 {
     float a = (point.x - _picker.getPosition().x);

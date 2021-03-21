@@ -44,6 +44,7 @@ public:
     ~Switch() = default;
 
     bool checked() const;
+    void check(bool value);
 
     bool picker_contains(sf::Vector2f const &point) const;
     bool contains(sf::Vector2f const &point) const;

@@ -1,17 +1,9 @@
-#include <iostream>
+#include <string>
 #include <fstream>
 #include "Settings.hpp"
 
-static sf::VideoMode strToResolution(std::string const &str)
-{
-    std::string x{str.substr(0, str.find('x'))};
-    std::string y{str.substr(str.find('x') + 1, str.size())};
-
-    return sf::VideoMode{static_cast<unsigned int>(std::strtoul(x.c_str(), nullptr, 0)), static_cast<unsigned int>(std::strtoul(y.c_str(), nullptr, 0))};
-}
-
-Settings::Settings(sf::VideoMode const &videomode, sf::String const &title, unsigned int framerate_limit, unsigned int style, sf::ContextSettings const &settings)
-: videomode{videomode}, title{title}, framerate_limit{framerate_limit}, style{style}, settings{settings} {}
+Settings::Settings(sf::VideoMode const &videomode, unsigned int framerate_limit, bool fullscreen, unsigned int antialiasing_level)
+: videomode{videomode}, framerate_limit{framerate_limit}, fullscreen{fullscreen}, antialiasing_level{antialiasing_level} {}
 
 void Settings::loadFromFile(std::string const &filename)
 {
@@ -29,15 +21,15 @@ void Settings::loadFromFile(std::string const &filename)
         } else if (key == "fps-limit") {
             framerate_limit = std::strtoul(value.c_str(), nullptr, 0);
         } else if (key == "fullscreen") {
-            style = (value == "true" ? sf::Style::Fullscreen : sf::Style::Close);
+            fullscreen = value == "true";
         } else if (key == "antialiasing-level") {
-            settings = sf::ContextSettings{0, 0, static_cast<unsigned int>(std::strtoul(value.c_str(), nullptr, 0))};
+            antialiasing_level = static_cast<unsigned int>(std::strtoul(value.c_str(), nullptr, 0));
         }
     }
     file.close();
 }
 
-void Settings::saveToFile(std::string const &filename)
+void Settings::saveToFile(std::string const &filename) const
 {
     std::ofstream file(filename);
 
@@ -45,10 +37,51 @@ void Settings::saveToFile(std::string const &filename)
         return;
     file << "resolution=" << videomode.width << 'x' << videomode.height << std::endl;
     file << "fps-limit=" << framerate_limit << std::endl;
-    file << "fullscreen=" << (style == sf::Style::Fullscreen ? "true" : "false") << std::endl;
-    file << "antialiasing-level=" << settings.antialiasingLevel << std::endl;
+    file << "fullscreen=" << (fullscreen ? "true" : "false") << std::endl;
+    file << "antialiasing-level=" << antialiasing_level << std::endl;
     file.close();
 }
 
-void Settings::update(sf::RenderWindow &window) const
-{}
+std::string Settings::getResolution() const
+{
+    return std::to_string(videomode.width) + "x" + std::to_string(videomode.height);
+}
+
+unsigned int Settings::getStyle() const
+{
+    return fullscreen ? sf::Style::Fullscreen : sf::Style::Close;
+}
+
+sf::ContextSettings Settings::getContextSettings() const
+{
+    return sf::ContextSettings{0, 0, antialiasing_level};
+}
+
+void Settings::apply(Settings const &settings, sf::RenderWindow &window)
+{
+    if (videomode != settings.videomode || fullscreen != settings.fullscreen || antialiasing_level != settings.antialiasing_level) {
+        window.create(settings.videomode, "sfml-template", settings.getStyle(), settings.getContextSettings());
+        window.setFramerateLimit(settings.framerate_limit);
+    } else if (framerate_limit != settings.framerate_limit) {
+        window.setFramerateLimit(settings.framerate_limit);
+    }
+    *this = settings;
+}
+
+sf::VideoMode Settings::strToResolution(std::string const &str)
+{
+    std::string x{str.substr(0, str.find('x'))};
+    std::string y{str.substr(str.find('x') + 1, str.size())};
+
+    return sf::VideoMode{static_cast<unsigned int>(std::strtoul(x.c_str(), nullptr, 0)), static_cast<unsigned int>(std::strtoul(y.c_str(), nullptr, 0))};
+}
+
+Settings &Settings::operator=(Settings const &other)
+{
+    videomode = other.videomode;
+    framerate_limit = other.framerate_limit;
+    fullscreen = other.fullscreen;
+    antialiasing_level = other.antialiasing_level;
+
+    return *this;
+}

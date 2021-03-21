@@ -1,5 +1,5 @@
-#include <iostream>
 #include "OptionsScene.hpp"
+#include "Settings.hpp"
 
 Scenes::Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{},
 _rangePicker{
@@ -66,6 +66,9 @@ _back_button{
     _resolutions_dropdown.addElement("2560x1440");
     _resolutions_dropdown.addElement("3840x2160");
     _resolutions_dropdown.addElement("7680x4320");
+
+    _fullscreen_switch.check(GLOBAL_SETTINGS.fullscreen);
+    _resolutions_dropdown.setValue(GLOBAL_SETTINGS.getResolution());
 }
 
 void Scenes::Options::event(sf::RenderWindow &window, Scene::ID &currentId)
@@ -92,8 +95,14 @@ void Scenes::Options::update(sf::RenderWindow &window, const float elapsed_time)
     _apply_button.update(window, elapsed_time);
     _back_button.update(window, elapsed_time);
     if (_apply_button.released()) {
-        sf::ContextSettings settings(0, 0, 8);
-        window.create(sf::VideoMode{1920U, 1080U}, "sfml-template", _fullscreen_switch.checked() ? sf::Style::Fullscreen : sf::Style::Close, settings);
+        Settings settings{
+            Settings::strToResolution(_resolutions_dropdown.getValue()),
+            60U,
+            _fullscreen_switch.checked(),
+            8U
+        };
+        GLOBAL_SETTINGS.apply(settings, window);
+        GLOBAL_SETTINGS.saveToFile(SETTINGS_FILE);
     }
 }
 
