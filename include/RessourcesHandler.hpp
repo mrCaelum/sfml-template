@@ -17,11 +17,11 @@ public:
 	RessourcesHandler();
 	~RessourcesHandler() = default;
 
-	void setTexture(sf::String const &filename);
-	void setFont(sf::String const &filename);
-	void setSound(sf::String const &filename);
+	void setTexture(sf::String const &filename, sf::String const &alias = "");
+	void setFont(sf::String const &filename, sf::String const &alias = "");
+	void setSound(sf::String const &filename, sf::String const &alias = "");
 
-	sf::Texture &getTexture(sf::String const &filename);
-	sf::Font &getFont(sf::String const &filename);
-	sf::SoundBuffer &getSound(sf::String const &filename);
+	sf::Texture &getTexture(sf::String const &name);
+	sf::Font &getFont(sf::String const &name);
+	sf::SoundBuffer &getSound(sf::String const &name);
 };
