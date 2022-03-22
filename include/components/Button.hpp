@@ -9,43 +9,43 @@
 class Button : public sf::Drawable
 {
 public:
-    enum State {
-        IDLE,
-        HOVERED,
-        CLICKED,
-        RELEASED
-    };
+	enum State {
+		IDLE,
+		HOVERED,
+		CLICKED,
+		RELEASED
+	};
 
 private:
-    sf::RectangleShape _box;
-    sf::Text _text;
-    sf::Vector2f _position;
-    Animation _hovered;
-    Animation _clicked;
-    float _elapsed_time;
-    State _state;
+	sf::RectangleShape _box;
+	sf::Text _text;
+	sf::Vector2f _position;
+	Animation _hovered;
+	Animation _clicked;
+	float _elapsed_time;
+	State _state;
 
 public:
-    Button(
-        sf::Font const &font,
-        sf::String const &text,
-        sf::Vector2f const &position = {0.0f, 0.0f},
-        sf::Vector2f const &size = {200.0f, 40.0f},
-        unsigned int const character_size = 24U,
-        sf::Color const &text_color = sf::Color::White,
-        sf::Color const &background_color = sf::Color{80, 80, 80},
-        sf::Color const &border_color = sf::Color{52, 152, 219},
-        float const border_thickness = 1.0f,
-        Animation const &hovered = Animation{},
-        Animation const &clicked = Animation{}
-    );
-    Button() = delete;
-    ~Button() = default;
+	Button(
+		sf::Font const &font,
+		sf::String const &text,
+		sf::Vector2f const &position = {0.0f, 0.0f},
+		sf::Vector2f const &size = {200.0f, 40.0f},
+		unsigned int const character_size = 24U,
+		sf::Color const &text_color = sf::Color::White,
+		sf::Color const &background_color = sf::Color{80, 80, 80},
+		sf::Color const &border_color = sf::Color{52, 152, 219},
+		float const border_thickness = 1.0f,
+		Animation const &hovered = Animation{},
+		Animation const &clicked = Animation{}
+	);
+	Button() = delete;
+	~Button() = default;
 
-    bool hovered() const;
-    bool clicked() const;
-    bool released() const;
+	bool hovered() const;
+	bool clicked() const;
+	bool released() const;
 
-    void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
-    void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

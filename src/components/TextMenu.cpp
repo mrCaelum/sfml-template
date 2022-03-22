@@ -6,45 +6,45 @@ TextMenu::TextMenu(sf::Font const &font, unsigned int const character_size, sf::
 
 void TextMenu::updateStates(sf::RenderWindow const &window, sf::Event event)
 {
-    for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-        it->updateState(window, event);
-    }
+	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+		it->updateState(window, event);
+	}
 }
 
 void TextMenu::update(sf::RenderWindow const &window, float const elapsed_time)
 {
-    for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-        it->update(window, elapsed_time);
-    }
+	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+		it->update(window, elapsed_time);
+	}
 }
 
 void TextMenu::addButton(sf::String const &text, sf::Vector2f const &position)
 {
-    _buttons.emplace_back(text, _font, position, _character_size, _text_color, _text_outline_color, _outline_thickness, _origin, _hovered, _clicked);
+	_buttons.emplace_back(text, _font, position, _character_size, _text_color, _text_outline_color, _outline_thickness, _origin, _hovered, _clicked);
 }
 
 TextButton *TextMenu::getButton(sf::String const &text)
 {
-    for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-        if (it->getString() == text)
-            return &*it;
-    }
-    return nullptr;
+	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+		if (it->getString() == text)
+			return &*it;
+	}
+	return nullptr;
 }
 
 std::vector<TextButton::State> TextMenu::getStates() const
 {
-    std::vector<TextButton::State> states{};
+	std::vector<TextButton::State> states{};
 
-    for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-        states.push_back(it->getState());
-    }
-    return states;
+	for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+		states.push_back(it->getState());
+	}
+	return states;
 }
 
 void TextMenu::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-        target.draw(*it, states);
-    }
+	for (std::vector<TextButton>::const_iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
+		target.draw(*it, states);
+	}
 }
