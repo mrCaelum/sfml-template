@@ -1,9 +1,9 @@
 #include "MenuScene.hpp"
 
 Scenes::Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources)
-: Scene{}, _title{"Platformer", ressources.getFont("assets/fonts/Roboto.ttf"), 50U}
+: Scene{}, _title{"Platformer", ressources.getFont("Roboto"), 50U}
 , _textMenu{
-	ressources.getFont("assets/fonts/Roboto.ttf"),
+	ressources.getFont("Roboto"),
 	30U,
 	sf::Color::White,
 	sf::Color::Black,
@@ -11,7 +11,7 @@ Scenes::Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources
 	TextButton::Origin::LEFT,
 	Animation{Animation::Type::LEFT_TO_RIGHT_SLIDE, 0.1f, 2.0f},
 	Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
-}, _selectSoundEffect{ressources.getSound("assets/audio/select.wav")}, _background{}
+}, _selectSoundEffect{ressources.getSound("select")}, _background{}
 {
 	_title.setPosition({window.getSize().x / 2.0f, window.getSize().y / 5.0f});
 	_title.setFillColor(sf::Color::White);
@@ -24,7 +24,7 @@ Scenes::Menu::Menu(sf::RenderWindow const &window, RessourcesHandler &ressources
 	_textMenu.addButton("Options", {window.getSize().x / 10.0f, 12 * window.getSize().y / 20.0f});
 	_textMenu.addButton("Exit", {window.getSize().x / 10.0f, 13 * window.getSize().y / 20.0f});
 
-	_background.setTexture(ressources.getTexture("assets/background.jpg"));
+	_background.setTexture(ressources.getTexture("background"));
 }
 
 void Scenes::Menu::event(sf::RenderWindow &window, Scene::ID &currentId)

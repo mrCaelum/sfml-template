@@ -12,9 +12,9 @@ Core::Core(Settings const &settings) noexcept
 {
 	_window.setFramerateLimit(settings.framerate_limit);
 
-	_ressources.setFont("assets/fonts/Roboto.ttf");
-	_ressources.setSound("assets/audio/select.wav");
-	_ressources.setTexture("assets/background.jpg");
+	_ressources.setFont("assets/fonts/Roboto.ttf", "Roboto");
+	_ressources.setSound("assets/audio/select.wav", "select");
+	_ressources.setTexture("assets/background.jpg", "background");
 
 	_scenes.push_back(std::make_unique<Scenes::Menu>(_window, _ressources));
 	_scenes.push_back(std::make_unique<Scenes::Options>(_window, _ressources));

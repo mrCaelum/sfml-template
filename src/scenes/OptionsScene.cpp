@@ -12,20 +12,20 @@ _fullscreen_switch{
 	{25.0f}
 },
 _resolutions_dropdown{
-	ressources.getFont("assets/fonts/Roboto.ttf"),
+	ressources.getFont("Roboto"),
 	"Select",
 	{100.0f, 300.0f},
 	{250.0f, 40.0f},
 	{250.0f, 40.0f * 9.0f}
 },
 _apply_button{
-	ressources.getFont("assets/fonts/Roboto.ttf"),
+	ressources.getFont("Roboto"),
 	"Apply",
 	{100.0f, 400.0f}
 },
 _back_button{
 	"back",
-	ressources.getFont("assets/fonts/Roboto.ttf"),
+	ressources.getFont("Roboto"),
 	{window.getSize().x / 20.0f, 19 * window.getSize().y / 20.0f},
 	30U,
 	sf::Color::White,
