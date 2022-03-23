@@ -22,32 +22,32 @@ void Animation::update(sf::Transformable &transform, float const elapsed_time, b
 				++this->state;
 		}
 		switch (this->type) {
-		case Animation::Type::ZOOM_IN:
-			transform.setScale(sf::Vector2f{1.0f, 1.0f} * MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
-			break;
-		case Animation::Type::ZOOM_OUT:
-			transform.setScale(sf::Vector2f{1.0f, 1.0f} / MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
-			break;
-		case Animation::Type::TOP_TO_BOTTOM_SLIDE:
-			transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y + this->intensity)});
-			break;
-		case Animation::Type::BOTTOM_TO_TOP_SLIDE:
-			transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y - this->intensity)});
-			break;
-		case Animation::Type::LEFT_TO_RIGHT_SLIDE:
-			transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x + this->intensity), position.y});
-			break;
-		case Animation::Type::RIGHT_TO_LEFT_SLIDE:
-			transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x - this->intensity), position.y});
-			break;
-		case Animation::Type::POSITIVE_ROTATION:
-			transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation - this->intensity));
-			break;
-		case Animation::Type::NEGATIVE_ROTATION:
-			transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation + this->intensity));
-			break;
-		default:
-			break;
+			case Animation::Type::ZOOM_IN:
+				transform.setScale(sf::Vector2f{1.0f, 1.0f} * MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
+				break;
+			case Animation::Type::ZOOM_OUT:
+				transform.setScale(sf::Vector2f{1.0f, 1.0f} / MAP(this->state, 0.0f, this->iteration, 1.0f, this->intensity));
+				break;
+			case Animation::Type::TOP_TO_BOTTOM_SLIDE:
+				transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y + this->intensity)});
+				break;
+			case Animation::Type::BOTTOM_TO_TOP_SLIDE:
+				transform.setPosition(sf::Vector2f{position.x, MAP(this->state, 0.0f, this->iteration, position.y, position.y - this->intensity)});
+				break;
+			case Animation::Type::LEFT_TO_RIGHT_SLIDE:
+				transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x + this->intensity), position.y});
+				break;
+			case Animation::Type::RIGHT_TO_LEFT_SLIDE:
+				transform.setPosition(sf::Vector2f{MAP(this->state, 0.0f, this->iteration, position.x, position.x - this->intensity), position.y});
+				break;
+			case Animation::Type::POSITIVE_ROTATION:
+				transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation - this->intensity));
+				break;
+			case Animation::Type::NEGATIVE_ROTATION:
+				transform.setRotation(MAP(this->state, 0.0f, this->iteration, rotation, rotation + this->intensity));
+				break;
+			default:
+				break;
 		}
 	}
 }
