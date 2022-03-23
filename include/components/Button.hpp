@@ -16,10 +16,15 @@ public:
 		RELEASED
 	};
 
+	bool disabled;
+
 private:
 	sf::RectangleShape _box;
 	sf::Text _text;
 	sf::Vector2f _position;
+	sf::Color _text_color;
+	sf::Color _background_color;
+	sf::Color _border_color;
 	Animation _hovered;
 	Animation _clicked;
 	float _elapsed_time;
@@ -32,7 +37,7 @@ public:
 		sf::Vector2f const &position = {0.0f, 0.0f},
 		sf::Vector2f const &size = {200.0f, 40.0f},
 		unsigned int const character_size = 24U,
-		sf::Color const &text_color = sf::Color::White,
+		sf::Color const &text_color = sf::Color{255, 255, 255},
 		sf::Color const &background_color = sf::Color{80, 80, 80},
 		sf::Color const &border_color = sf::Color{52, 152, 219},
 		float const border_thickness = 1.0f,
