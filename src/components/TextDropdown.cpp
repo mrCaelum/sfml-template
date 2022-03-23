@@ -45,7 +45,7 @@ void TextDropdownElement::draw(sf::RenderTarget &target, sf::RenderStates states
 }
 
 TextDropdown::TextDropdown(sf::Font const &font, sf::String const &placeholder, sf::Vector2f const &position, sf::Vector2f const &size, sf::Vector2f const &dropdown_size, unsigned int character_size, sf::Color const &primary_color, sf::Color const &background_color, Animation const &arrow_clicked)
-: _font{font}, _position{position}, _size{size}, _dropdown_size{dropdown_size}, _character_size{character_size}, _primary_color{primary_color}, _background_color{background_color}, _box{}, _arrow{size.y / 8.0f, 3}, _selectedText{}, _texture_frame{}, _frame{}, _elements{}, _arrow_clicked{arrow_clicked}, _state{State::IDLE}, _unwrapped{false}, _changed{false}
+: disabled{false}, _font{font}, _position{position}, _size{size}, _dropdown_size{dropdown_size}, _character_size{character_size}, _primary_color{primary_color}, _background_color{background_color}, _box{}, _arrow{size.y / 8.0f, 3}, _selectedText{}, _texture_frame{}, _frame{}, _elements{}, _arrow_clicked{arrow_clicked}, _state{State::IDLE}, _unwrapped{false}, _changed{false}
 {
 	_box.setPosition(_position);
 	_box.setSize(_size);
@@ -57,7 +57,7 @@ TextDropdown::TextDropdown(sf::Font const &font, sf::String const &placeholder, 
 	_selectedText.setString(placeholder);
 	_selectedText.setOrigin({0.0f, _selectedText.getGlobalBounds().height / 2.0f});
 	_selectedText.setPosition({_position.x + 10.0f, _position.y + _size.y / 2.0f});
-	_selectedText.setFillColor(sf::Color(200, 200, 200));
+	_selectedText.setFillColor(sf::Color{200, 200, 200});
 	_selectedText.setCharacterSize(_character_size);
 
 	_arrow.setFillColor(_primary_color);
@@ -99,6 +99,10 @@ void TextDropdown::update(sf::RenderWindow const &window, float const elapsed_ti
 {
 	sf::Vector2f mouse_position = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
 
+	_box.setFillColor(disabled ? sf::Color{_background_color.toInteger() / 2} : _background_color);
+	_box.setOutlineColor(disabled ? sf::Color{_primary_color.toInteger() / 2} : _primary_color);
+	_selectedText.setFillColor(disabled ? sf::Color{100, 100, 100} : sf::Color{200, 200, 200});
+	_arrow.setFillColor(disabled ? sf::Color{_primary_color.toInteger() / 2} : _primary_color);
 	if (_box.getGlobalBounds().contains(mouse_position) || (_unwrapped && _frame.getGlobalBounds().contains(mouse_position))) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			_state = State::CLICKED;
@@ -126,7 +130,7 @@ void TextDropdown::update(sf::RenderWindow const &window, float const elapsed_ti
 		_texture_frame.display();
 	}
 	if (_state == State::RELEASED)
-		_unwrapped = !_unwrapped;
+		_unwrapped = disabled ? false : !_unwrapped;
 }
 
 void TextDropdown::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -134,7 +138,7 @@ void TextDropdown::draw(sf::RenderTarget &target, sf::RenderStates states) const
 	target.draw(_box, states);
 	target.draw(_selectedText, states);
 	target.draw(_arrow, states);
-	if (_unwrapped) {
+	if (_unwrapped && !disabled) {
 		target.draw(_frame, states);
 	}
 }

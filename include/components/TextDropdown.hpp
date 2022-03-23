@@ -38,8 +38,11 @@ public:
 	enum State {
 		IDLE,
 		CLICKED,
-		RELEASED
+		RELEASED,
+		DISABLED
 	};
+
+	bool disabled;
 
 private:
 	sf::Font _font;

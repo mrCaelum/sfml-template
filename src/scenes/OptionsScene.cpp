@@ -91,6 +91,7 @@ void Scenes::Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
 	_rangePicker.update(window);
 	_fullscreen_switch.update(window, elapsed_time);
+	_resolutions_dropdown.disabled = _fullscreen_switch.checked();
 	_resolutions_dropdown.update(window, elapsed_time);
 	_apply_button.update(window, elapsed_time);
 	_back_button.update(window, elapsed_time);
