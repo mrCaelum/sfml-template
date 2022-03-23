@@ -8,20 +8,14 @@
 class Switch : public sf::Drawable
 {
 private:
-	enum MouseState {
-		IDLE,
-		CLICKED,
-		CLICKED_ON
-	};
-
 	bool _checked;
+	bool _clicked;
 	sf::Vector2f _position;
 	float _size;
 	sf::Color _unchecked_color;
 	sf::Color _checked_color;
 	float _border_thickness;
 	Animation _animation;
-	unsigned char _mouse_state;
 
 	sf::RectangleShape _center_border;
 	sf::CircleShape _left_background;
