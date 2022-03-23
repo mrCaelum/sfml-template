@@ -1,6 +1,8 @@
 #include <SFML/Window/Mouse.hpp>
 #include "TextDropdown.hpp"
 
+#define DARKER(x, y) (sf::Color{x.r / y, x.g / y, x.b / y, x.a})
+
 TextDropdownElement::TextDropdownElement(sf::Font const &font, sf::String const &text, sf::Vector2f const &size, unsigned int character_size)
 : _size{size}, _text{}, _box{}
 {
@@ -99,10 +101,10 @@ void TextDropdown::update(sf::RenderWindow const &window, float const elapsed_ti
 {
 	sf::Vector2f mouse_position = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
 
-	_box.setFillColor(disabled ? sf::Color{_background_color.toInteger() / 2} : _background_color);
-	_box.setOutlineColor(disabled ? sf::Color{_primary_color.toInteger() / 2} : _primary_color);
+	_box.setFillColor(disabled ? DARKER(_background_color, 2u) : _background_color);
+	_box.setOutlineColor(disabled ? DARKER(_primary_color, 2u) : _primary_color);
 	_selectedText.setFillColor(disabled ? sf::Color{100, 100, 100} : sf::Color{200, 200, 200});
-	_arrow.setFillColor(disabled ? sf::Color{_primary_color.toInteger() / 2} : _primary_color);
+	_arrow.setFillColor(disabled ? DARKER(_primary_color, 2u) : _primary_color);
 	if (_box.getGlobalBounds().contains(mouse_position) || (_unwrapped && _frame.getGlobalBounds().contains(mouse_position))) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			_state = State::CLICKED;
