@@ -87,6 +87,11 @@ bool TextDropdown::changed()
 	return false;
 }
 
+bool TextDropdown::unwrapped() const
+{
+	return _unwrapped;
+}
+
 sf::String TextDropdown::getValue() const
 {
 	return _selectedText.getString();
