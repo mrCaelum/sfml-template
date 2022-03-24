@@ -15,7 +15,7 @@ namespace Scenes {
 	{
 	private:
 		RangePicker _rangePicker;
-		Switch _fullscreen_switch;
+		TextDropdown _window_type_dropdown;
 		TextDropdown _resolutions_dropdown;
 		Button _apply_button;
 		TextButton _back_button;

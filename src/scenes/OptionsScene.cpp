@@ -4,24 +4,35 @@
 Scenes::Options::Options(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{},
 _rangePicker{
 	10U,
-	{100.0f, 100.0f},
+	{300.0f, 100.0f},
 	{500.0f, 20.0f}
 },
-_fullscreen_switch{
-	{100.0f, 200.0f},
-	{25.0f}
+_window_type_dropdown{
+	ressources.getFont("Roboto"),
+	"Select",
+	{300.0f, 200.0f},
+	{250.0f, 40.0f},
+	{250.0f, 40.0f * 3.0f}
 },
 _resolutions_dropdown{
 	ressources.getFont("Roboto"),
 	"Select",
-	{100.0f, 300.0f},
+	{300.0f, 300.0f},
 	{250.0f, 40.0f},
 	{250.0f, 40.0f * 9.0f}
 },
 _apply_button{
 	ressources.getFont("Roboto"),
 	"Apply",
-	{100.0f, 400.0f}
+	{300.0f, 400.0f},
+	{200.0f, 40.0f},
+	24u,
+	sf::Color{255, 255, 255},
+	sf::Color{80, 80, 80},
+	sf::Color{52, 152, 219},
+	1.0f,
+	Animation{},
+	Animation{}
 },
 _back_button{
 	"back",
@@ -36,6 +47,10 @@ _back_button{
 	Animation{Animation::Type::ZOOM_OUT, 0.05f, 1.05f}
 }
 {
+	for (unsigned char i = 0; i < 3; ++i) {
+		_window_type_dropdown.addElement(Settings::WINDOW_TYPES[i]);
+	}
+
 	// 4:3
 	// _resolutions_dropdown.addElement("640x480");
 	// _resolutions_dropdown.addElement("800x600");
@@ -67,7 +82,7 @@ _back_button{
 	_resolutions_dropdown.addElement("3840x2160");
 	_resolutions_dropdown.addElement("7680x4320");
 
-	_fullscreen_switch.check(GLOBAL_SETTINGS.fullscreen);
+	_window_type_dropdown.setValue(Settings::WINDOW_TYPES[GLOBAL_SETTINGS.window_type]);
 	_resolutions_dropdown.setValue(GLOBAL_SETTINGS.getResolution());
 }
 
@@ -89,31 +104,43 @@ void Scenes::Options::event(sf::RenderWindow &window, Scene::ID &currentId)
 
 void Scenes::Options::update(sf::RenderWindow &window, const float elapsed_time)
 {
-	_rangePicker.update(window);
-	_fullscreen_switch.update(window, elapsed_time);
-	_resolutions_dropdown.disabled = _fullscreen_switch.checked();
-	_resolutions_dropdown.update(window, elapsed_time);
+	bool window_type_unwrapped = _window_type_dropdown.unwrapped();
+	bool resolutions_unwrapped = _resolutions_dropdown.unwrapped();
+	if (!window_type_unwrapped && !resolutions_unwrapped) {
+		_rangePicker.update(window);
+	}
+	if (!resolutions_unwrapped) {
+		_window_type_dropdown.update(window, elapsed_time);
+	}
+	Settings::WindowType window_type = Settings::strToWindowType(_window_type_dropdown.getValue());
+	if (!window_type_unwrapped) {
+		_resolutions_dropdown.disabled = window_type == Settings::WindowType::FULLSCREEN;
+		_resolutions_dropdown.update(window, elapsed_time);
+	}
 	sf::VideoMode resolution = Settings::strToResolution(_resolutions_dropdown.getValue());
-	_apply_button.disabled = _fullscreen_switch.checked() == GLOBAL_SETTINGS.fullscreen && resolution == GLOBAL_SETTINGS.videomode;
-	_apply_button.update(window, elapsed_time);
-	_back_button.update(window, elapsed_time);
-	if (_apply_button.released()) {
-		Settings settings{
-			resolution,
-			60U,
-			_fullscreen_switch.checked(),
-			8U
-		};
-		GLOBAL_SETTINGS.apply(settings, window);
-		GLOBAL_SETTINGS.saveToFile(SETTINGS_FILE);
+	if (!window_type_unwrapped && !resolutions_unwrapped) {
+		_apply_button.disabled = window_type == GLOBAL_SETTINGS.window_type && resolution == GLOBAL_SETTINGS.videomode;
+		_apply_button.update(window, elapsed_time);
+		_back_button.update(window, elapsed_time);
+		if (_apply_button.released() && !_resolutions_dropdown.changed()) {
+			Settings settings{
+				resolution,
+				60U,
+				window_type,
+				8U
+			};
+			GLOBAL_SETTINGS.apply(settings, window);
+			GLOBAL_SETTINGS.saveToFile(SETTINGS_FILE);
+		}
 	}
 }
 
 void Scenes::Options::draw(sf::RenderWindow &window)
 {
+	window.draw(_categories_menu);
 	window.draw(_rangePicker);
-	window.draw(_fullscreen_switch);
 	window.draw(_apply_button);
 	window.draw(_back_button);
 	window.draw(_resolutions_dropdown);
+	window.draw(_window_type_dropdown);
 }
