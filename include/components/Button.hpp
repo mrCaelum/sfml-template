@@ -6,9 +6,15 @@
 #include <SFML/Graphics/Text.hpp>
 #include "Animation.hpp"
 
+/**
+ * @brief A drawable button component. In a square shape.
+ */
 class Button : public sf::Drawable
 {
 public:
+	/**
+	 * @brief The button states.
+	 */
 	enum State {
 		IDLE,
 		HOVERED,
@@ -16,6 +22,11 @@ public:
 		RELEASED
 	};
 
+	/**
+	 * @brief If true, the button switches to its disabled state.
+	 * 
+	 * @note The button state will still be working.
+	 */
 	bool disabled;
 
 private:
@@ -31,6 +42,21 @@ private:
 	State _state;
 
 public:
+	/**
+	 * @brief Construct a new Button object.
+	 * 
+	 * @param font The text font.
+	 * @param text The text string.
+	 * @param position The button absolute position.
+	 * @param size The button global size.
+	 * @param character_size The text size.
+	 * @param text_color The text color.
+	 * @param background_color The button background color.
+	 * @param border_color The button border color.
+	 * @param border_thickness The border size.
+	 * @param hovered An animation object that will trigger on button hover.
+	 * @param clicked An animation object that will trigger on button click.
+	 */
 	Button(
 		sf::Font const &font,
 		sf::String const &text,
@@ -44,13 +70,51 @@ public:
 		Animation const &hovered = Animation{},
 		Animation const &clicked = Animation{}
 	);
+
 	Button() = delete;
+
+	/**
+	 * @brief Destroy the Button object
+	 */
 	~Button() = default;
 
+	/**
+	 * @brief Gets the hovered state.
+	 * 
+	 * @return true if the mouse hovers above the button.
+	 * @return false otherwise.
+	 */
 	bool hovered() const;
+
+	/**
+	 * @brief Gets the clicked state.
+	 * 
+	 * @return true if the mouse clicked on the button.
+	 * @return false otherwise.
+	 */
 	bool clicked() const;
+
+	/**
+	 * @brief Gets the released state.
+	 * 
+	 * @return true if the mouse has been released on the button.
+	 * @return false otherwise.
+	 */
 	bool released() const;
 
+	/**
+	 * @brief Updates the button.
+	 * 
+	 * @param window The window where the button is drawn.
+	 * @param elapsed_time The elasped time since the last update.
+	 */
 	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+
+	/**
+	 * @brief Draw the button to a render target.
+	 * 
+	 * @param target Render target to draw to.
+	 * @param states Current render states.
+	 */
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 };

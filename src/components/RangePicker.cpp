@@ -27,11 +27,6 @@ RangePicker::RangePicker(unsigned int range, sf::Vector2f position, sf::Vector2f
 	_right_bound.setPosition({_position.x + _line.getSize().x + _right_bound.getRadius(), _line.getPosition().y});
 }
 
-void RangePicker::setValue(unsigned int value)
-{
-	_value = value;
-}
-
 unsigned int RangePicker::getValue() const
 {
 	return _value;
