@@ -43,8 +43,6 @@ public:
 		Animation const &clicked = Animation{}
 	);
 
-	TextMenu() = delete;
-
 	/**
 	 * @brief Destroy the Text Menu object.
 	 */

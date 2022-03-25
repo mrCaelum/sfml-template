@@ -3,7 +3,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "Scene.hpp"
-#include "RessourcesHandler.hpp"
+#include "ResourcesHandler.hpp"
+#include "TextMenu.hpp"
 #include "TextButton.hpp"
 #include "Button.hpp"
 #include "RangePicker.hpp"
@@ -14,6 +15,7 @@ namespace Scenes {
 	class Options : public Scene
 	{
 	private:
+		TextMenu _categories_menu;
 		RangePicker _rangePicker;
 		TextDropdown _window_type_dropdown;
 		TextDropdown _resolutions_dropdown;
@@ -21,11 +23,11 @@ namespace Scenes {
 		TextButton _back_button;
 
 	public:
-		Options(sf::RenderWindow const &window, RessourcesHandler &ressources);
+		Options(sf::RenderWindow &window, ResourcesHandler &resources);
 		~Options() = default;
 
-		void event(sf::RenderWindow &window, Scene::ID &currentId) final;
-		void update(sf::RenderWindow &window, const float elapsed_time) final;
-		void draw(sf::RenderWindow &window) final;
+		void event() final;
+		void update(const float elapsed_time) final;
+		void draw() final;
 	};
 };

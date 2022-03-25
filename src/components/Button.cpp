@@ -19,6 +19,26 @@ Button::Button(sf::Font const &font, sf::String const &text, sf::Vector2f const 
 	_text.setFillColor(_text_color);
 }
 
+Button::Button(Button const &other)
+: disabled{other.disabled}, _box{other._box}, _text{other._text}, _position{other._position}, _text_color{other._text_color}, _background_color{other._background_color}, _border_color{other._border_color}, _hovered{other._hovered}, _clicked{other._clicked}, _elapsed_time{other._elapsed_time}, _state{other._state}
+{}
+
+Button &Button::operator=(Button const &other)
+{
+	this->disabled = other.disabled;
+	this->_box = other._box;
+	this->_text = other._text;
+	this->_position = other._position;
+	this->_text_color = other._text_color;
+	this->_background_color = other._background_color;
+	this->_border_color = other._border_color;
+	this->_hovered = other._hovered;
+	this->_clicked = other._clicked;
+	this->_elapsed_time = other._elapsed_time;
+	this->_state = other._state;
+	return *this;
+}
+
 bool Button::hovered() const
 {
 	return _state == State::HOVERED;

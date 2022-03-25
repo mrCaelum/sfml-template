@@ -60,8 +60,8 @@ public:
 	 * @param clicked An animation object that triggers on mouse click.
 	 */
 	TextButton(
-		sf::String const &text,
 		sf::Font const &font,
+		sf::String const &text,
 		sf::Vector2f const &position = {0.0f, 0.0f},
 		unsigned int const size = 30U,
 		sf::Color const &color = sf::Color::White,
@@ -71,8 +71,6 @@ public:
 		Animation const &hovered = Animation{},
 		Animation const &clicked = Animation{}
 	);
-
-	TextButton() = delete;
 
 	/**
 	 * @brief Destroy the Text Button object.
@@ -97,10 +95,9 @@ public:
 	/**
 	 * @brief Updates the object.
 	 * 
-	 * @param window The window where the object is drawn.
 	 * @param elapsed_time The elasped time since the last update.
 	 */
-	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+	void update(float const elapsed_time = 0.0f);
 
 	/**
 	 * @brief Gets the text string.

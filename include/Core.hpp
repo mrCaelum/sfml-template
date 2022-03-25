@@ -1,13 +1,11 @@
 #pragma once
 
 #include <string>
-#include <memory>
-#include <vector>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include "Settings.hpp"
 #include "Scene.hpp"
-#include "RessourcesHandler.hpp"
+#include "ResourcesHandler.hpp"
 
 namespace sf {
 	class VideoMode;
@@ -16,6 +14,7 @@ namespace sf {
 	class Clock;
 	class Font;
 };
+
 class Core {
 	public:
 		Core() = delete;
@@ -23,10 +22,8 @@ class Core {
 		Core(Core const &other) = delete;
 		~Core() = default;
 		int run();
+
 	private:
 		sf::RenderWindow _window;
-		sf::Clock _clock;
-		RessourcesHandler _ressources;
-		std::vector<std::unique_ptr<Scene>> _scenes;
-		Scene::ID _currentScene;
+		ResourcesHandler _resources;
 };

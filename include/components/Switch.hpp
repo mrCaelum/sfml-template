@@ -17,6 +17,7 @@ private:
 	float _size;
 	sf::Color _unchecked_color;
 	sf::Color _checked_color;
+	sf::Color _background_color;
 	float _border_thickness;
 	Animation _animation;
 
@@ -41,8 +42,8 @@ public:
 	 * @param checked If the switch is checked by default.
 	 */
 	Switch(
-		sf::Vector2f const &position,
-		const float size,
+		sf::Vector2f const &position = {0.0f, 0.0f},
+		const float size = 24.0f,
 		sf::Color const &unchecked_color = sf::Color(189, 195, 199),
 		sf::Color const &checked_color = sf::Color(52, 152, 219),
 		sf::Color const &background_color = sf::Color(236, 240, 241),
@@ -50,12 +51,25 @@ public:
 		bool checked = false
 	);
 
-	Switch() = delete;
+	/**
+	 * @brief Construct a new Switch object.
+	 * 
+	 * @param other The object to copy.
+	 */
+	Switch(Switch const &other);
 
 	/**
 	 * @brief Destroy the Switch object
 	 */
 	~Switch() = default;
+
+	/**
+	 * @brief Equal operator.
+	 * 
+	 * @param other The object to copy.
+	 * @return Switch& 
+	 */
+	Switch &operator=(Switch const &other);
 
 	/**
 	 * @brief Gets the checked state of the switch.
@@ -105,4 +119,10 @@ public:
 	 * @param states Current render states.
 	 */
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+
+private:
+	/**
+	 * @brief Initializes the component.
+	 */
+	void __init__();
 };

@@ -35,19 +35,32 @@ public:
 	 * @param bar_color The bar color.
 	 */
 	RangePicker(
-		unsigned int range,
-		sf::Vector2f position,
-		sf::Vector2f size,
+		unsigned int range = 10u,
+		sf::Vector2f position = {0.0f, 0.0f},
+		sf::Vector2f size = {300.0f, 15.0f},
 		sf::Color color = sf::Color(52, 152, 219),
 		sf::Color bar_color = sf::Color(236, 240, 241)
 	);
 
-	RangePicker() = delete;
+	/**
+	 * @brief Construct a new Range Picker object.
+	 * 
+	 * @param other The object to copy.
+	 */
+	RangePicker(RangePicker const &other);
 
 	/**
 	 * @brief Destroy the Range Picker object
 	 */
 	~RangePicker() = default;
+
+	/**
+	 * @brief Equal operator.
+	 * 
+	 * @param other The object to copy.
+	 * @return RangePicker& 
+	 */
+	RangePicker &operator=(RangePicker const &other);
 
 	/**
 	 * @brief Get the value in the range.

@@ -71,12 +71,25 @@ public:
 		Animation const &clicked = Animation{}
 	);
 
-	Button() = delete;
+	/**
+	 * @brief Construct a new Button object.
+	 * 
+	 * @param other The object to copy.
+	 */
+	Button(Button const &other);
 
 	/**
 	 * @brief Destroy the Button object
 	 */
 	~Button() = default;
+
+	/**
+	 * @brief Equal operator.
+	 * 
+	 * @param other The object to copy.
+	 * @return Button&
+	 */
+	Button &operator=(Button const &other);
 
 	/**
 	 * @brief Gets the hovered state.

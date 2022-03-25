@@ -3,7 +3,33 @@
 #include "Switch.hpp"
 
 Switch::Switch(sf::Vector2f const &position, const float size, sf::Color const &unchecked_color, sf::Color const &checked_color, sf::Color const &background_color, const float border_thickness, bool checked)
-: _checked{checked}, _clicked{false}, _position{position}, _size{size}, _unchecked_color{unchecked_color}, _checked_color{checked_color}, _border_thickness{border_thickness}, _animation{Animation::Type::LEFT_TO_RIGHT_SLIDE, 0.1f, size}, _center_border{}, _left_background{}, _right_background{}, _center_background{}, _picker{}
+: _checked{checked}, _clicked{false}, _position{position}, _size{size}, _unchecked_color{unchecked_color}, _checked_color{checked_color}, _background_color{background_color}, _border_thickness{border_thickness}, _animation{Animation::Type::LEFT_TO_RIGHT_SLIDE, 0.1f, size}, _center_border{}, _left_background{}, _right_background{}, _center_background{}, _picker{}
+{
+	__init__();
+}
+
+Switch::Switch(Switch const &other)
+: _checked{other._checked}, _clicked{other._clicked}, _position{other._position}, _size{other._size}, _unchecked_color{other._unchecked_color}, _checked_color{other._checked_color}, _background_color{other._background_color}, _border_thickness{other._border_thickness}, _animation{other._animation}, _center_border{}, _left_background{}, _right_background{}, _center_background{}, _picker{}
+{
+	__init__();
+}
+
+Switch &Switch::operator=(Switch const &other)
+{
+	this->_checked = other._checked;
+	this->_clicked = other._clicked;
+	this->_position = other._position;
+	this->_size = other._size;
+	this->_unchecked_color = other._unchecked_color;
+	this->_checked_color = other._checked_color;
+	this->_background_color = other._background_color;
+	this->_border_thickness = other._border_thickness;
+	this->_animation = other._animation;
+	this->__init__();
+	return *this;
+}
+
+void Switch::__init__()
 {
 	_center_border.setSize({_size, _size});
 	_center_border.setOrigin(_center_border.getSize() / 2.0f);
@@ -12,21 +38,21 @@ Switch::Switch(sf::Vector2f const &position, const float size, sf::Color const &
 
 	_left_background.setRadius(_size / 2.0f - _border_thickness);
 	_left_background.setOrigin({_left_background.getRadius(), _left_background.getRadius()});
-	_left_background.setFillColor(background_color);
+	_left_background.setFillColor(_background_color);
 	_left_background.setOutlineColor(_checked ? _checked_color : _unchecked_color);
 	_left_background.setOutlineThickness(_border_thickness);
 	_left_background.setPosition({_position.x + _border_thickness + _left_background.getRadius(), _position.y + _border_thickness + _left_background.getRadius()});
 
 	_right_background.setRadius(_size / 2.0f - _border_thickness);
 	_right_background.setOrigin({_right_background.getRadius(), _right_background.getRadius()});
-	_right_background.setFillColor(background_color);
+	_right_background.setFillColor(_background_color);
 	_right_background.setOutlineColor(_checked ? _checked_color : _unchecked_color);
 	_right_background.setOutlineThickness(_border_thickness);
 	_right_background.setPosition({_position.x + _size + _border_thickness + _right_background.getRadius(), _position.y + _border_thickness + _right_background.getRadius()});
 
 	_center_background.setSize({_size, _size - (2 * _border_thickness)});
 	_center_background.setOrigin(_center_background.getSize() / 2.0f);
-	_center_background.setFillColor(background_color);
+	_center_background.setFillColor(_background_color);
 	_center_background.setPosition({_position.x + _size / 2.0f + _center_background.getSize().x / 2.0f, _position.y + _border_thickness + _center_background.getSize().y / 2.0f});
 
 	_picker.setRadius(_size / 2.0f - (2 * _border_thickness));

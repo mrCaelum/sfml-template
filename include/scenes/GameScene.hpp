@@ -4,7 +4,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <vector>
 #include "Scene.hpp"
-#include "RessourcesHandler.hpp"
+#include "ResourcesHandler.hpp"
 
 namespace Scenes {
 	class Game : public Scene
@@ -13,11 +13,11 @@ namespace Scenes {
 		float _elapsedTime;
 
 	public:
-		Game(sf::RenderWindow const &window, RessourcesHandler &ressources);
+		Game(sf::RenderWindow &window, ResourcesHandler &resources);
 		~Game() = default;
 
-		void event(sf::RenderWindow &window, Scene::ID &currentId) final;
-		void update(sf::RenderWindow &window, const float elapsedTime) final;
-		void draw(sf::RenderWindow &window) final;
+		void event() final;
+		void update(const float elapsedTime) final;
+		void draw() final;
 	};
 };

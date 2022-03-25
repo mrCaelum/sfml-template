@@ -14,13 +14,13 @@ void TextMenu::updateStates(sf::RenderWindow const &window, sf::Event event)
 void TextMenu::update(sf::RenderWindow const &window, float const elapsed_time)
 {
 	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-		it->update(window, elapsed_time);
+		it->update(elapsed_time);
 	}
 }
 
 void TextMenu::addButton(sf::String const &text, sf::Vector2f const &position)
 {
-	_buttons.emplace_back(text, _font, position, _character_size, _text_color, _text_outline_color, _outline_thickness, _origin, _hovered, _clicked);
+	_buttons.emplace_back(_font, text, position, _character_size, _text_color, _text_outline_color, _outline_thickness, _origin, _hovered, _clicked);
 }
 
 TextButton *TextMenu::getButton(sf::String const &text)

@@ -1,22 +1,22 @@
 #include "GameScene.hpp"
 
-Scenes::Game::Game(sf::RenderWindow const &window, RessourcesHandler &ressources) : Scene{}, _elapsedTime{0.0f}//, _player{window, {10.0f, 10.0f}}
+Scenes::Game::Game(sf::RenderWindow &window, ResourcesHandler &resources) : Scene{window, resources}, _elapsedTime{0.0f}//, _player{window, {10.0f, 10.0f}}
 {}
 
-void Scenes::Game::event(sf::RenderWindow &window, Scene::ID &currentId)
+void Scenes::Game::event()
 {
 	sf::Event event;
 
-	while (window.pollEvent(event)) {
+	while (_window.pollEvent(event)) {
 		if (event.type == sf::Event::Closed)
-			window.close();
+			_window.close();
 		if (event.type == sf::Event::KeyReleased)
 			if (event.key.code == sf::Keyboard::Escape)
-				currentId = Scene::ID::MENU;
+				this->close();
 	}
 }
 
-void Scenes::Game::update(sf::RenderWindow &window, const float elapsedTime)
+void Scenes::Game::update(const float elapsedTime)
 {
 	_elapsedTime += elapsedTime;
 	while (_elapsedTime > 0.01f) {
@@ -24,7 +24,7 @@ void Scenes::Game::update(sf::RenderWindow &window, const float elapsedTime)
 	}
 }
 
-void Scenes::Game::draw(sf::RenderWindow &window)
+void Scenes::Game::draw()
 {
 	// window.draw(_player);
 }

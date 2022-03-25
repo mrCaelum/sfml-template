@@ -6,7 +6,18 @@ Animation::Animation(Type const type, float const duration, float const intensit
 : type{type}, duration{duration}, intensity{intensity}, iteration{iteration}, state{0U}, time{0.0f} {}
 
 Animation::Animation(Animation const &other)
-: type{other.type}, duration{other.duration}, intensity{other.intensity}, iteration{other.iteration}, state{0U}, time{0.0f} {}
+: type{other.type}, duration{other.duration}, intensity{other.intensity}, iteration{other.iteration}, state{other.state}, time{other.time} {}
+
+Animation &Animation::operator=(Animation const &other)
+{
+	this->type = other.type;
+	this->duration = other.duration;
+	this->intensity = other.intensity;
+	this->iteration = other.iteration;
+	this->state = other.state;
+	this->time = other.time;
+	return *this;
+}
 
 void Animation::update(sf::Transformable &transform, float const elapsed_time, bool anim, sf::Vector2f const &position, float rotation)
 {

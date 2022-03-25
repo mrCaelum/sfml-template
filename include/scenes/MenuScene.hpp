@@ -3,10 +3,10 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Font.hpp>
+#include <SFML/Audio/Sound.hpp>
 #include "Scene.hpp"
-#include "RessourcesHandler.hpp"
+#include "ResourcesHandler.hpp"
 #include "TextMenu.hpp"
-#include "SoundEffect.hpp"
 
 namespace Scenes {
 	class Menu : public Scene
@@ -14,15 +14,15 @@ namespace Scenes {
 	private:
 		sf::Text _title;
 		TextMenu _textMenu;
-		SoundEffect _selectSoundEffect;
+		sf::Sound _selectSoundEffect;
 		sf::Sprite _background;
 
 	public:
-		Menu(sf::RenderWindow const &window, RessourcesHandler &ressources);
+		Menu(sf::RenderWindow &window, ResourcesHandler &resources);
 		~Menu() = default;
 
-		void event(sf::RenderWindow &window, Scene::ID &currentId) final;
-		void update(sf::RenderWindow &window, const float elapsedTime) final;
-		void draw(sf::RenderWindow &window) final;
+		void event() final;
+		void update(const float elapsedTime) final;
+		void draw() final;
 	};
 };

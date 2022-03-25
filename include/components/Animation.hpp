@@ -22,10 +22,10 @@ struct Animation
 		NEGATIVE_ROTATION
 	};
 
-	Type const type;
-	float const duration;
-	float const intensity;
-	unsigned int const iteration;
+	Type type;
+	float duration;
+	float intensity;
+	unsigned int iteration;
 	unsigned int state;
 	float time;
 
@@ -50,6 +50,14 @@ struct Animation
 	 * @brief Destroy the Animation object
 	 */
 	~Animation() = default;
+
+	/**
+	 * @brief Equal operator
+	 * 
+	 * @param other The object to copy.
+	 * @return Animation& 
+	 */
+	Animation &Animation::operator=(Animation const &other);
 
 	/**
 	 * @brief Update the targeted object based on the elapsed time.

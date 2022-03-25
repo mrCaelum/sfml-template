@@ -27,6 +27,22 @@ RangePicker::RangePicker(unsigned int range, sf::Vector2f position, sf::Vector2f
 	_right_bound.setPosition({_position.x + _line.getSize().x + _right_bound.getRadius(), _line.getPosition().y});
 }
 
+RangePicker::RangePicker(RangePicker const &other)
+: _range{other._range}, _position{other._position}, _size{other._size}, _color{other._color}, _value{other._value}, _point{other._point}, _selected{other._selected}
+{}
+
+RangePicker &RangePicker::operator=(RangePicker const &other)
+{
+	this->_range = other._range;
+	this->_position = other._position;
+	this->_size = other._size;
+	this->_color = other._color;
+	this->_value = other._value;
+	this->_point = other._point;
+	this->_selected = other._selected;
+	return *this;
+}
+
 unsigned int RangePicker::getValue() const
 {
 	return _value;
