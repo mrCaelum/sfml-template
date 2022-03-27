@@ -1,5 +1,5 @@
 #include <cmath>
-#include "RoundedRectangleShape.hpp"
+#include "components/RoundedRectangleShape.hpp"
 
 RoundedRectangleShape::RoundedRectangleShape(sf::Vector2f const &size, float radius, unsigned int cornerPointCount)
 : _size{size}, _radius{radius}, _cornerPointCount{cornerPointCount}

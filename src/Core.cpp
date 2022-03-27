@@ -3,7 +3,7 @@
 #include <SFML/Window/Event.hpp>
 #include <iostream>
 #include "Core.hpp"
-#include "MenuScene.hpp"
+#include "scenes/MenuScene.hpp"
 
 Core::Core(Settings const &settings) noexcept
 : _window{settings.videomode, "sfml-template", settings.getStyle(), settings.getContextSettings()}, _resources{}

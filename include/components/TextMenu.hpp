@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "TextButton.hpp"
+#include "components/TextButton.hpp"
 
 /**
  * @brief A drawable menu of clickable text buttons.

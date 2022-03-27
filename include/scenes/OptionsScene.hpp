@@ -4,12 +4,12 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "Scene.hpp"
 #include "ResourcesHandler.hpp"
-#include "TextMenu.hpp"
-#include "TextButton.hpp"
-#include "Button.hpp"
-#include "RangePicker.hpp"
-#include "Switch.hpp"
-#include "TextDropdown.hpp"
+#include "components/TextMenu.hpp"
+#include "components/TextButton.hpp"
+#include "components/Button.hpp"
+#include "components/RangePicker.hpp"
+#include "components/Switch.hpp"
+#include "components/TextDropdown.hpp"
 
 namespace Scenes {
 	class Options : public Scene

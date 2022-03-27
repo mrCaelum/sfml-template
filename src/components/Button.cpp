@@ -1,4 +1,4 @@
-#include "Button.hpp"
+#include "components/Button.hpp"
 
 #define DARKER(x, y) (sf::Color{x.r / y, x.g / y, x.b / y, x.a})
 

@@ -7,7 +7,7 @@
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include "Animation.hpp"
+#include "components/Animation.hpp"
 
 /**
  * @brief A drawable text element part of a text dropdown.

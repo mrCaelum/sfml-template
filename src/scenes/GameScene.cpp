@@ -1,4 +1,4 @@
-#include "GameScene.hpp"
+#include "scenes/GameScene.hpp"
 
 Scenes::Game::Game(sf::RenderWindow &window, ResourcesHandler &resources) : Scene{window, resources}, _elapsedTime{0.0f}//, _player{window, {10.0f, 10.0f}}
 {}

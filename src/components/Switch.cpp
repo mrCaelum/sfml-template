@@ -1,6 +1,5 @@
 #include <SFML/Window/Event.hpp>
-#include <iostream>
-#include "Switch.hpp"
+#include "components/Switch.hpp"
 
 Switch::Switch(sf::Vector2f const &position, const float size, sf::Color const &unchecked_color, sf::Color const &checked_color, sf::Color const &background_color, const float border_thickness, bool checked)
 : _checked{checked}, _clicked{false}, _position{position}, _size{size}, _unchecked_color{unchecked_color}, _checked_color{checked_color}, _background_color{background_color}, _border_thickness{border_thickness}, _animation{Animation::Type::LEFT_TO_RIGHT_SLIDE, 0.1f, size}, _center_border{}, _left_background{}, _right_background{}, _center_background{}, _picker{}

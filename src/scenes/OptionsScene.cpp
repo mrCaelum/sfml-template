@@ -1,4 +1,4 @@
-#include "OptionsScene.hpp"
+#include "scenes/OptionsScene.hpp"
 #include "Settings.hpp"
 
 Scenes::Options::Options(sf::RenderWindow &window, ResourcesHandler &resources)

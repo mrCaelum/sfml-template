@@ -6,7 +6,7 @@
 #include <SFML/Audio/Sound.hpp>
 #include "Scene.hpp"
 #include "ResourcesHandler.hpp"
-#include "TextMenu.hpp"
+#include "components/TextMenu.hpp"
 
 namespace Scenes {
 	class Menu : public Scene

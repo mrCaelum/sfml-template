@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
-#include "Animation.hpp"
+#include "components/Animation.hpp"
 
 /**
  * @brief A drawable switch component.

@@ -1,5 +1,5 @@
 #include <SFML/Window/Event.hpp>
-#include "RangePicker.hpp"
+#include "components/RangePicker.hpp"
 
 RangePicker::RangePicker(unsigned int range, sf::Vector2f position, sf::Vector2f size, sf::Color color, sf::Color bar_color)
 : _range{range}, _position{position}, _size{size}, _color{color}, _value{3U}, _point{}, _selected{false}

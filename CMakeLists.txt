@@ -22,8 +22,6 @@ add_executable(${PROJECT_NAME} ${INCLUDE_DIRECTORIES} ${SOURCES})
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	${PROJECT_SOURCE_DIR}/include
-	${PROJECT_SOURCE_DIR}/include/scenes
-	${PROJECT_SOURCE_DIR}/include/components
 )
 
 set(CMAKE_CXX_STANDARD 17)

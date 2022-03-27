@@ -4,7 +4,7 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
-#include "Animation.hpp"
+#include "components/Animation.hpp"
 
 /**
  * @brief A drawable button component. In a square shape.

@@ -1,6 +1,6 @@
-#include "MenuScene.hpp"
-#include "GameScene.hpp"
-#include "OptionsScene.hpp"
+#include "scenes/MenuScene.hpp"
+#include "scenes/GameScene.hpp"
+#include "scenes/OptionsScene.hpp"
 
 Scenes::Menu::Menu(sf::RenderWindow &window, ResourcesHandler &resources)
 : Scene{window, resources}, _title{"Platformer", _resources.getFont("Roboto"), 50U}
