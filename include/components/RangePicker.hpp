@@ -35,8 +35,8 @@ public:
 		unsigned int range = 10u,
 		sf::Vector2f position = {0.0f, 0.0f},
 		sf::Vector2f size = {300.0f, 20.0f},
-		sf::Color color = sf::Color(52, 152, 219),
-		sf::Color bar_color = sf::Color(236, 240, 241)
+		sf::Color color = sf::Color{52, 152, 219},
+		sf::Color bar_color = sf::Color{236, 240, 241}
 	);
 
 	/**
