@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include "components/Animation.hpp"
+#include "components/RoundedRectangleShape.hpp"
 
 /**
  * @brief A drawable switch component.
@@ -21,10 +21,7 @@ private:
 	float _border_thickness;
 	Animation _animation;
 
-	sf::RectangleShape _center_border;
-	sf::CircleShape _left_background;
-	sf::CircleShape _right_background;
-	sf::RectangleShape _center_background;
+	RoundedRectangleShape _background;
 	sf::CircleShape _picker;
 
 	sf::Color _compute_color() const;
@@ -94,15 +91,6 @@ public:
 	 * @return false otherwise.
 	 */
 	bool picker_contains(sf::Vector2f const &point) const;
-
-	/**
-	 * @brief Checks if the point is contained in the switch.
-	 * 
-	 * @param point The point to check.
-	 * @return true if the point is graphically contained in the switch.
-	 * @return false otherwise.
-	 */
-	bool contains(sf::Vector2f const &point) const;
 
 	/**
 	 * @brief Updates the switch.
