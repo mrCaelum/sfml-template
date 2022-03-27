@@ -41,6 +41,7 @@ _apply_button{
 	sf::Color{255, 255, 255},
 	sf::Color{80, 80, 80},
 	sf::Color{52, 152, 219},
+	4.0f,
 	1.0f,
 	Animation{},
 	Animation{}

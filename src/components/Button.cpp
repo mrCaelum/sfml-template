@@ -2,11 +2,13 @@
 
 #define DARKER(x, y) (sf::Color{x.r / y, x.g / y, x.b / y, x.a})
 
-Button::Button(sf::Font const &font, sf::String const &text, sf::Vector2f const &position, sf::Vector2f const &size, unsigned int const character_size, sf::Color const &text_color, sf::Color const &background_color, sf::Color const &border_color, float const border_thickness, Animation const &hovered, Animation const &clicked)
+Button::Button(sf::Font const &font, sf::String const &text, sf::Vector2f const &position, sf::Vector2f const &size, unsigned int const character_size, sf::Color const &text_color, sf::Color const &background_color, sf::Color const &border_color, float const corner_radius, float const border_thickness, Animation const &hovered, Animation const &clicked)
 : disabled{false}, _box{}, _text{}, _position{position}, _text_color{text_color}, _background_color{background_color}, _border_color{border_color}, _hovered{hovered}, _clicked{clicked}, _elapsed_time{0.0f}, _state{State::IDLE}
 {
 	_box.setPosition(position);
 	_box.setSize(size);
+	_box.setCornersRadius(corner_radius);
+	_box.setCornerPointCount(10);
 	_box.setFillColor(_background_color);
 	_box.setOutlineColor(_border_color);
 	_box.setOutlineThickness(border_thickness);

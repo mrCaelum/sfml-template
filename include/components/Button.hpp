@@ -2,9 +2,9 @@
 
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "components/Animation.hpp"
+#include "components/RoundedRectangleShape.hpp"
 
 /**
  * @brief A drawable button component. In a square shape.
@@ -30,7 +30,7 @@ public:
 	bool disabled;
 
 private:
-	sf::RectangleShape _box;
+	RoundedRectangleShape _box;
 	sf::Text _text;
 	sf::Vector2f _position;
 	sf::Color _text_color;
@@ -66,6 +66,7 @@ public:
 		sf::Color const &text_color = sf::Color{255, 255, 255},
 		sf::Color const &background_color = sf::Color{80, 80, 80},
 		sf::Color const &border_color = sf::Color{52, 152, 219},
+		float const corner_radius = 2.0f,
 		float const border_thickness = 1.0f,
 		Animation const &hovered = Animation{},
 		Animation const &clicked = Animation{}
