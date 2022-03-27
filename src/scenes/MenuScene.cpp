@@ -31,6 +31,7 @@ Scenes::Menu::Menu(sf::RenderWindow &window, ResourcesHandler &resources)
 
 void Scenes::Menu::event()
 {
+	static bool _sound_effect_played = false;
 	sf::Event event;
 
 	while (_window.pollEvent(event)) {
@@ -48,8 +49,13 @@ void Scenes::Menu::event()
 			OPEN_SCENE(Scenes::Game, _window, _resources);
 		if (optionsBtnState == TextButton::State::RELEASED)
 			OPEN_SCENE(Scenes::Options, _window, _resources);
-		if ((playBtnState == TextButton::State::HOVERED || optionsBtnState == TextButton::State::HOVERED || exitBtnState == TextButton::State::HOVERED) && _selectSoundEffect.getStatus() != sf::Sound::Status::Playing) {
-			_selectSoundEffect.play();
+		if (playBtnState == TextButton::State::HOVERED || optionsBtnState == TextButton::State::HOVERED || exitBtnState == TextButton::State::HOVERED) {
+			if (!_sound_effect_played && _selectSoundEffect.getStatus() != sf::Sound::Status::Playing) {
+				_selectSoundEffect.play();
+			}
+			_sound_effect_played = true;
+		} else {
+			_sound_effect_played = false;
 		}
 	}
 }
