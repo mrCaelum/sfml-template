@@ -2,29 +2,19 @@
 #include "components/RangePicker.hpp"
 
 RangePicker::RangePicker(unsigned int range, sf::Vector2f position, sf::Vector2f size, sf::Color color, sf::Color bar_color)
-: _range{range}, _position{position}, _size{size}, _color{color}, _value{3U}, _point{}, _selected{false}
+: _range{range}, _position{position}, _size{size}, _color{color}, _value{3U}, _point{}, _line{}, _selected{false}
 {
-	static const float bar_height_factor{5.0f};
+	static const float bar_height_factor{6.0f};
 
 	_point.setRadius(_size.y / 2.0f);
 	_point.setOrigin({_point.getRadius(), _point.getRadius()});
 	_point.setFillColor(color);
 	_point.setPosition({static_cast<float>(_value) * _size.x / static_cast<float>(_range) + _position.x, _position.y + (_size.y / 2.0f)});
 
-	_line.setSize({_size.x - (_size.y / bar_height_factor), _size.y / bar_height_factor});
+	_line.setSize({_size.x, _size.y / bar_height_factor});
 	_line.setOrigin({_line.getSize().x / 2, _line.getSize().y / 2});
 	_line.setFillColor(bar_color);
 	_line.setPosition({_position.x + (_size.x / 2.0f), _position.y + (_size.y / 2.0f)});
-
-	_left_bound.setRadius(_size.y / bar_height_factor / 2.0f);
-	_left_bound.setOrigin({_left_bound.getRadius(), _left_bound.getRadius()});
-	_left_bound.setFillColor(bar_color);
-	_left_bound.setPosition({_position.x + _left_bound.getRadius(), _position.y + (_size.y / 2.0f)});
-
-	_right_bound.setRadius(_size.y / bar_height_factor / 2.0f);
-	_right_bound.setOrigin({_right_bound.getRadius(), _right_bound.getRadius()});
-	_right_bound.setFillColor(bar_color);
-	_right_bound.setPosition({_position.x + _line.getSize().x + _right_bound.getRadius(), _line.getPosition().y});
 }
 
 RangePicker::RangePicker(RangePicker const &other)
@@ -94,7 +84,5 @@ void RangePicker::update(sf::RenderWindow const &window)
 void RangePicker::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
 	target.draw(_line, states);
-	target.draw(_left_bound, states);
-	target.draw(_right_bound, states);
 	target.draw(_point, states);
 }
