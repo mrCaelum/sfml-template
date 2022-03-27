@@ -2,9 +2,8 @@
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <vector>
+#include "Core.hpp"
 #include "Scene.hpp"
-#include "ResourcesHandler.hpp"
 
 namespace Scenes {
 	class Game : public Scene
@@ -13,8 +12,10 @@ namespace Scenes {
 		float _elapsedTime;
 
 	public:
-		Game(sf::RenderWindow &window, ResourcesHandler &resources);
+		Game();
+		Game(Game const &other) = delete;
 		~Game() = default;
+		Game &operator=(Game const &other) = delete;
 
 		void event() final;
 		void update(const float elapsedTime) final;

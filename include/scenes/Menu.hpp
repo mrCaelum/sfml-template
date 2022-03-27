@@ -4,8 +4,8 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Audio/Sound.hpp>
+#include "Core.hpp"
 #include "Scene.hpp"
-#include "ResourcesHandler.hpp"
 #include "components/TextMenu.hpp"
 
 namespace Scenes {
@@ -18,8 +18,10 @@ namespace Scenes {
 		sf::Sprite _background;
 
 	public:
-		Menu(sf::RenderWindow &window, ResourcesHandler &resources);
+		Menu();
+		Menu(Menu const &other) = delete;
 		~Menu() = default;
+		Menu &operator=(Menu const &other) = delete;
 
 		void event() final;
 		void update(const float elapsedTime) final;

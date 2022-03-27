@@ -2,8 +2,8 @@
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "Core.hpp"
 #include "Scene.hpp"
-#include "ResourcesHandler.hpp"
 #include "components/TextMenu.hpp"
 #include "components/TextButton.hpp"
 #include "components/Button.hpp"
@@ -23,8 +23,10 @@ namespace Scenes {
 		TextButton _back_button;
 
 	public:
-		Options(sf::RenderWindow &window, ResourcesHandler &resources);
+		Options();
+		Options(Options const &other) = delete;
 		~Options() = default;
+		Options &operator=(Options const &other) = delete;
 
 		void event() final;
 		void update(const float elapsed_time) final;

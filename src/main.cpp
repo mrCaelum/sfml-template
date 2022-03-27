@@ -1,12 +1,16 @@
 #include "Core.hpp"
-
-Settings GLOBAL_SETTINGS;
+#include "scenes/Menu.hpp"
 
 int main(void)
 {
-	GLOBAL_SETTINGS.loadFromFile(SETTINGS_FILE);
+	Core::SETTINGS.loadFromFile(SETTINGS_FILE);
+	Core::WINDOW.create(Core::SETTINGS.videomode, "sfml-template", Core::SETTINGS.getStyle(), Core::SETTINGS.getContextSettings());
+	Core::WINDOW.setFramerateLimit(Core::SETTINGS.framerate_limit);
+	Core::RESOURCES.setFont("assets/fonts/Roboto.ttf", "Roboto");
+	Core::RESOURCES.setSound("assets/audio/select.wav", "select");
+	Core::RESOURCES.setTexture("assets/background.jpg", "background");
 
-	Core core{GLOBAL_SETTINGS};
+	OPEN_SCENE(Scenes::Menu);
 
-	return core.run();
+	return EXIT_SUCCESS;
 }
