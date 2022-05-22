@@ -9,11 +9,13 @@ private:
 	sf::Vector2f _position;
 	sf::Vector2f _origin;
 
-public:
+protected:
 	Clickable(sf::Vector2f const &size = {0.0f, 0.0f}, sf::Vector2f const &position = {0.0f, 0.0f});
 	Clickable(Clickable const &other);
-	~Clickable() = default;
 	Clickable &operator=(Clickable const &other);
+
+public:
+	~Clickable() = default;
 
 	sf::Vector2f const &getSize() const;
 	void setSize(sf::Vector2f const &size);

@@ -110,8 +110,8 @@ void Scenes::Options::event()
 		if (event.type == sf::Event::KeyReleased)
 			if (event.key.code == sf::Keyboard::Escape)
 				this->close();
-		_categories_menu.updateStates(Core::WINDOW, event);
-		_back_button.updateState(Core::WINDOW, event);
+		_categories_menu.updateStates(event);
+		_back_button.updateState(event);
 		if (_back_button.getState() == TextButton::State::RELEASED)
 			this->close();
 	}
@@ -122,21 +122,21 @@ void Scenes::Options::update(const float elapsed_time)
 	bool window_type_unwrapped = _window_type_dropdown.unwrapped();
 	bool resolutions_unwrapped = _resolutions_dropdown.unwrapped();
 	if (!window_type_unwrapped && !resolutions_unwrapped) {
-		_categories_menu.update(Core::WINDOW, elapsed_time);
-		_rangePicker.update(Core::WINDOW);
+		_categories_menu.update(elapsed_time);
+		_rangePicker.update();
 	}
 	if (!resolutions_unwrapped) {
-		_window_type_dropdown.update(Core::WINDOW, elapsed_time);
+		_window_type_dropdown.update(elapsed_time);
 	}
 	Settings::WindowType window_type = Settings::strToWindowType(_window_type_dropdown.getValue());
 	if (!window_type_unwrapped) {
 		_resolutions_dropdown.disabled = window_type == Settings::WindowType::FULLSCREEN;
-		_resolutions_dropdown.update(Core::WINDOW, elapsed_time);
+		_resolutions_dropdown.update(elapsed_time);
 	}
 	sf::VideoMode resolution = Settings::strToResolution(_resolutions_dropdown.getValue());
 	if (!window_type_unwrapped && !resolutions_unwrapped) {
 		_apply_button.disabled = window_type == Core::SETTINGS.window_type && resolution == Core::SETTINGS.videomode;
-		_apply_button.update(Core::WINDOW, elapsed_time);
+		_apply_button.update(elapsed_time);
 		_back_button.update(elapsed_time);
 		if (_apply_button.released()) {
 			Settings settings{

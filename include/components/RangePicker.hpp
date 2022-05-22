@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Graphics/Drawable.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
@@ -90,12 +89,9 @@ public:
 	bool contains(sf::Vector2f const &point) const;
 
 	/**
-	 * @brief Updates the object
-	 * 
-	 * @param window The window where the object is drawn.
-	 * @param elapsed_time The elasped time since the last update.
+	 * @brief Updates the object.
 	 */
-	void update(sf::RenderWindow const &window);
+	void update();
 
 	/**
 	 * @brief Draw the object to a render target.

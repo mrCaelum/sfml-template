@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include "components/TextButton.hpp"
 
 /**
@@ -54,7 +55,7 @@ public:
 	 * @param window The window where the menu is displayed.
 	 * @param event The event object.
 	 */
-	void updateStates(sf::RenderWindow const &window, sf::Event event);
+	void updateStates(sf::Event event);
 
 	/**
 	 * @brief Updates the menu.
@@ -62,7 +63,7 @@ public:
 	 * @param window The window where the switch is drawn.
 	 * @param elapsed_time The elasped time since the last update.
 	 */
-	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+	void update(float const elapsed_time = 0.0f);
 
 	/**
 	 * @brief Adds a button to the menu.

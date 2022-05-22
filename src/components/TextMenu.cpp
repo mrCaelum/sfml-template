@@ -4,14 +4,14 @@ TextMenu::TextMenu(sf::Font const &font, unsigned int const character_size, sf::
 : _buttons{}, _font{font}, _character_size{character_size}, _text_color{text_color}, _text_outline_color{text_outline_color}, _outline_thickness{outline_thickness}, _origin{origin}, _hovered{hovered}, _clicked{clicked}
 {}
 
-void TextMenu::updateStates(sf::RenderWindow const &window, sf::Event event)
+void TextMenu::updateStates(sf::Event event)
 {
 	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
-		it->updateState(window, event);
+		it->updateState(event);
 	}
 }
 
-void TextMenu::update(sf::RenderWindow const &window, float const elapsed_time)
+void TextMenu::update(float const elapsed_time)
 {
 	for (std::vector<TextButton>::iterator it = _buttons.begin(); it != _buttons.end(); ++it) {
 		it->update(elapsed_time);

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "components/Animation.hpp"
 
@@ -83,7 +82,7 @@ public:
 	 * @param window The window where the button is drawn.
 	 * @param event The event object.
 	 */
-	void updateState(sf::RenderWindow const &window, sf::Event event);
+	void updateState(sf::Event event);
 
 	/**
 	 * @brief Gets the state of the object.

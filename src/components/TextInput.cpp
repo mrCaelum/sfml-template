@@ -5,7 +5,7 @@ TextInput::TextInput(sf::Font const &font, sf::Vector2f const &position, sf::Vec
 {
 }
 
-void TextInput::update(sf::RenderWindow const &window, float const elapsed_time)
+void TextInput::update(float const elapsed_time)
 {
 }
 

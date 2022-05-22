@@ -1,7 +1,6 @@
 #pragma once
 
 #include <SFML/Window/Event.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include "components/Animation.hpp"
 #include "components/RoundedRectangleShape.hpp"
@@ -122,7 +121,7 @@ public:
 	 * @param window The window where the button is drawn.
 	 * @param elapsed_time The elasped time since the last update.
 	 */
-	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+	void update(float const elapsed_time = 0.0f);
 
 	/**
 	 * @brief Draw the button to a render target.

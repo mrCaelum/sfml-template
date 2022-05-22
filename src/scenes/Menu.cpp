@@ -41,7 +41,7 @@ void Scenes::Menu::event()
 			if (event.key.code == sf::Keyboard::Escape)
 				Core::WINDOW.close();
 
-		_textMenu.updateStates(Core::WINDOW, event);
+		_textMenu.updateStates(event);
 		TextButton::State playBtnState = _textMenu.getButton("Play")->getState(), optionsBtnState = _textMenu.getButton("Options")->getState(), exitBtnState = _textMenu.getButton("Exit")->getState();
 		if (exitBtnState == TextButton::State::RELEASED)
 			Core::WINDOW.close();
@@ -62,7 +62,7 @@ void Scenes::Menu::event()
 
 void Scenes::Menu::update(const float elapsedTime)
 {
-	_textMenu.update(Core::WINDOW, elapsedTime);
+	_textMenu.update(elapsedTime);
 }
 
 void Scenes::Menu::draw()

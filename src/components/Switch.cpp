@@ -1,4 +1,5 @@
 #include <SFML/Window/Event.hpp>
+#include "Core.hpp"
 #include "components/Switch.hpp"
 
 Switch::Switch(sf::Vector2f const &position, const float size, sf::Color const &unchecked_color, sf::Color const &checked_color, sf::Color const &background_color, const float border_thickness, bool checked)
@@ -74,9 +75,9 @@ sf::Color Switch::_compute_color() const
 	);
 }
 
-void Switch::update(sf::RenderWindow const &window, const float elapsed_time)
+void Switch::update(const float elapsed_time)
 {
-	if (_background.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)))) {
+	if (_background.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(Core::WINDOW)))) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			_clicked = true;
 		} else if (_clicked) {

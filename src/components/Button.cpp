@@ -1,4 +1,5 @@
 #include "components/Button.hpp"
+#include "Core.hpp"
 
 #define DARKER(x, y) (sf::Color{x.r / y, x.g / y, x.b / y, x.a})
 
@@ -56,12 +57,12 @@ bool Button::released() const
 	return _state == State::RELEASED;
 }
 
-void Button::update(sf::RenderWindow const &window, float const elapsed_time)
+void Button::update(float const elapsed_time)
 {
 	_box.setFillColor(disabled ? DARKER(_background_color, 2u) : _background_color);
 	_box.setOutlineColor(disabled ? DARKER(_border_color, 2u) : _border_color);
 	_text.setFillColor(disabled ? DARKER(_text_color, 2u) : _text_color);
-	if (_box.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)))) {
+	if (_box.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(Core::WINDOW)))) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
 			_state = State::CLICKED;
 		} else if (_state == State::CLICKED) {

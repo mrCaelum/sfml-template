@@ -1,4 +1,5 @@
 #include <SFML/Window/Event.hpp>
+#include "Core.hpp"
 #include "components/RangePicker.hpp"
 
 RangePicker::RangePicker(unsigned int range, sf::Vector2f position, sf::Vector2f size, sf::Color color, sf::Color bar_color)
@@ -56,10 +57,10 @@ bool RangePicker::contains(sf::Vector2f const &point) const
 	return (((a * a) + (b * b)) < (_point.getRadius() * _point.getRadius()));
 }
 
-void RangePicker::update(sf::RenderWindow const &window)
+void RangePicker::update()
 {
 	if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-		sf::Vector2i mouse_pos_i{sf::Mouse::getPosition(window)};
+		sf::Vector2i mouse_pos_i{sf::Mouse::getPosition(Core::WINDOW)};
 		sf::Vector2f mouse_position{static_cast<float>(mouse_pos_i.x), static_cast<float>(mouse_pos_i.y)};
 		if (contains(mouse_position)) {
 			_selected = true;

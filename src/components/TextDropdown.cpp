@@ -1,4 +1,5 @@
 #include <SFML/Window/Mouse.hpp>
+#include "Core.hpp"
 #include "components/TextDropdown.hpp"
 
 #define DARKER(x, y) (sf::Color{x.r / y, x.g / y, x.b / y, x.a})
@@ -102,9 +103,9 @@ void TextDropdown::setValue(sf::String const &text)
 	_selectedText.setString(text);
 }
 
-void TextDropdown::update(sf::RenderWindow const &window, float const elapsed_time)
+void TextDropdown::update(float const elapsed_time)
 {
-	sf::Vector2f mouse_position = static_cast<sf::Vector2f>(sf::Mouse::getPosition(window));
+	sf::Vector2f mouse_position = static_cast<sf::Vector2f>(sf::Mouse::getPosition(Core::WINDOW));
 
 	_box.setFillColor(disabled ? DARKER(_background_color, 2u) : _background_color);
 	_box.setOutlineColor(disabled ? DARKER(_primary_color, 2u) : _primary_color);

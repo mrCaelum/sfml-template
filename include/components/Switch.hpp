@@ -95,10 +95,9 @@ public:
 	/**
 	 * @brief Updates the switch.
 	 * 
-	 * @param window The window where the switch is drawn.
 	 * @param elapsed_time The elasped time since the last update.
 	 */
-	void update(sf::RenderWindow const &window, const float elapsed_time = 0.0f);
+	void update(const float elapsed_time = 0.0f);
 
 	/**
 	 * @brief Draw the switch to a render target.

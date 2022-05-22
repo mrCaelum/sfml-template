@@ -1,4 +1,5 @@
 #include <SFML/Window/Mouse.hpp>
+#include "Core.hpp"
 #include "components/TextButton.hpp"
 
 TextButton::TextButton(sf::Font const &font, sf::String const &text, sf::Vector2f const &position, unsigned int const size, sf::Color const &color, sf::Color const &outline_color, float const outline_thickness, Origin const origin, Animation const &hovered, Animation const &clicked)
@@ -14,9 +15,9 @@ TextButton::TextButton(sf::Font const &font, sf::String const &text, sf::Vector2
 	setOrigin(origin);
 }
 
-void TextButton::updateState(sf::RenderWindow const &window, sf::Event event)
+void TextButton::updateState(sf::Event event)
 {
-	if (_text.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window))))
+	if (_text.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(Core::WINDOW))))
 		_state = (event.type == sf::Event::MouseButtonReleased) ? State::RELEASED
 			: (event.type == sf::Event::MouseButtonPressed) ? State::CLICKED
 			: State::HOVERED;

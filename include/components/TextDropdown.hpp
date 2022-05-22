@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/RenderTexture.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/CircleShape.hpp>
@@ -188,10 +187,9 @@ public:
 	/**
 	 * @brief Updates the dropdown.
 	 * 
-	 * @param window The window where the dropdown is drawn.
 	 * @param elapsed_time The elasped time since the last update.
 	 */
-	void update(sf::RenderWindow const &window, float const elapsed_time = 0.0f);
+	void update(float const elapsed_time = 0.0f);
 
 	/**
 	 * @brief Draw the dropdown to a render target.
